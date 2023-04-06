@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:swipable_stack/swipable_stack.dart';
 
+import '../../controllers/login_controller.dart';
 import '../../utils/responsive.dart';
 import '../../widgets/TextFormFields/custom_text_form_fields.dart';
 
@@ -17,6 +19,7 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
   TextEditingController? passwordController;
   late SwipableStackController swipeableCardSectionController;
   final _unfocusNode = FocusNode();
+  final LoginController _loginCtrl = Get.find<LoginController>();
   @override
   void initState() {
     super.initState();
@@ -33,7 +36,7 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    Responsive _responsive = Responsive.of(context);
+    Responsive responsive = Responsive.of(context);
     return Scaffold(
       backgroundColor: Colors.blueAccent,
       body: GestureDetector(
@@ -50,11 +53,10 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                     decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         colors: [
-                          Color(0xF3E00B67),
+                          Color(0xB2B60F22),
+                          Color(0xF3A028B2),
                         ],
-                        stops: [
-                          0,
-                        ],
+                        stops: [0, 1],
                         begin: AlignmentDirectional(
                           1,
                           -0.34,
@@ -67,77 +69,82 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                     ),
                     child: Stack(
                       children: [
-                        ///TODO: meter responsive cuando se ejecute en la app
+                        //Containers del Login( TextFormField e imagen de login)
                         Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
+                          padding: EdgeInsetsDirectional.fromSTEB(
                             0,
-                            200,
+                            responsive.dp(15), //200
                             0,
                             0,
                           ),
                           child: Container(
                             width: double.infinity,
-                            height: 500,
+                            height: responsive.dp(60), //500
                             decoration: const BoxDecoration(
                               color: Colors.transparent,
                             ),
+                            //Caja de atras
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  25, 25, 25, 25),
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  responsive.dp(2),
+                                  responsive.dp(2),
+                                  responsive.dp(2),
+                                  responsive.dp(2)), //25 en todas
                               child: Container(
-                                width: 100,
-                                height: 100,
+                                width: responsive.dp(30), //100
+                                height: responsive.dp(30),
                                 decoration: BoxDecoration(
-                                  color: const Color(0x6EE00B67),
+                                  color: const Color(0xA5B55B67),
                                   borderRadius: BorderRadius.circular(30),
                                 ),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                    25,
-                                    25,
-                                    25,
-                                    25,
-                                  ),
-                                  child: Container(
-                                    width: 100,
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                      color: const Color(0x6EE00B67),
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              5, 0, 5, 0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Lottie.network(
-                                            'https://assets8.lottiefiles.com/packages/lf20_li0pgakp.json',
-                                            width: 150,
-                                            height: 130,
-                                            fit: BoxFit.cover,
-                                            repeat: false,
-                                            animate: true,
-                                          ),
-                                          CustomTextFormFields(
-                                            ctrl: emailAddressController!,
-                                            icon: Icons.email_outlined,
-                                            titleLabel: "E-mail",
-                                          ),
-                                          CustomTextFormFields(
-                                            ctrl: passwordController!,
-                                            icon: Icons.lock_outline,
-                                            titleLabel: "Password",
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsetsDirectional
-                                                .fromSTEB(0, 15, 0, 0),
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      responsive.hp(2.1),
+                                      0,
+                                      responsive.hp(2.1),
+                                      0), //5
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        GetBuilder(
+                                          builder: (LoginController ctrl) {
+                                            return Lottie.network(
+                                              'https://assets8.lottiefiles.com/packages/lf20_li0pgakp.json',
+                                              width: responsive.wp(35), //150
+                                              height: responsive.hp(22), //130
+                                              fit: BoxFit.cover,
+                                              repeat: ctrl.isRepeat,
+                                              animate: true,
+                                            );
+                                          },
+                                        ),
+                                        //TextFormField del correo
+                                        CustomTextFormFields(
+                                          ctrl: emailAddressController!,
+                                          icon: Icons.email_outlined,
+                                          titleLabel: "E-mail",
+                                        ),
+                                        //TextFormField de la contraseña
+                                        CustomTextFormFields(
+                                          ctrl: passwordController!,
+                                          icon: Icons.lock_outline,
+                                          titleLabel: "Password",
+                                        ),
+                                        //Boton de login
+                                        Padding(
+                                          padding: const EdgeInsetsDirectional
+                                              .fromSTEB(0, 15, 0, 0),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              debugPrint(
+                                                  "Navegacion hacia Home");
+                                            },
                                             child: Container(
-                                              width: 200,
-                                              height: 55,
+                                              width: responsive.wp(50), //200
+                                              height: responsive.hp(10), //55
                                               decoration: BoxDecoration(
                                                 gradient: const LinearGradient(
                                                   colors: [
@@ -158,36 +165,17 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                                                   10,
                                                 ),
                                               ),
-                                              child: InkWell(
-                                                onTap: () {
-                                                  debugPrint(
-                                                      "Navegacion hacia Home");
-                                                },
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: const [
-                                                        Text(
-                                                          "LOGIN",
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
+                                              child: const Center(
+                                                child: Text(
+                                                  "LOGIN",
+                                                  style: TextStyle(
+                                                      color: Colors.black),
                                                 ),
                                               ),
                                             ),
-                                          )
-                                        ],
-                                      ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -195,33 +183,61 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                             ),
                           ),
                         ),
-                        SwipableStack(
-                          builder: (context, swipeProperty) {
-                            return [
-                              () => Container(
-                                    width: 100,
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                      color: const Color(0x83E00B67),
-                                      borderRadius: BorderRadius.circular(100),
-                                    ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: const [
-                                            Text('+more',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(fontSize: 52)),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
+                      ],
+                    ),
+                  ),
+                  SwipableStack(
+                    builder: (context, swipeProperty) {
+                      return [
+                        () => Container(
+                              width: responsive.dp(100),
+                              height: responsive.dp(100),
+                              decoration: BoxDecoration(
+                                color: const Color(0x83E00B67),
+                                borderRadius: BorderRadius.circular(100),
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      Text('+more',
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(fontSize: 52)),
+                                    ],
                                   ),
-                              () => Container(
+                                ],
+                              ),
+                            ),
+                        () => Container(
+                              width: responsive.dp(75),
+                              height: responsive.dp(75),
+                              decoration: BoxDecoration(
+                                color: const Color(0xF3E0C30B),
+                                borderRadius: BorderRadius.circular(100),
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      Text(
+                                        'music',
+                                        style: TextStyle(
+                                          fontSize: 35,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                        /* () => Container(
                                     width: 100,
                                     height: 100,
                                     decoration: BoxDecoration(
@@ -238,7 +254,7 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
                                           children: const [
-                                            Text('music',
+                                            Text('on your phone',
                                                 style: TextStyle(
                                                   fontSize: 35,
                                                 )),
@@ -273,16 +289,19 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                                         ),
                                       ],
                                     ),
-                                  ),
-                            ][swipeProperty.index]();
-                          },
-                          itemCount: 3,
-                          controller: swipeableCardSectionController,
-                          allowVerticalSwipe: false,
-                        )
-                      ],
-                    ),
-                  ),
+                                  ),*/
+                      ][swipeProperty.index]();
+                    },
+                    itemCount: 2,
+                    controller: swipeableCardSectionController,
+                    allowVerticalSwipe: false,
+                    onSwipeCompleted: (index, direction) {
+                      if (index == 1) {
+                        //cambiar a 2
+                        _loginCtrl.updateLogo(false);
+                      }
+                    },
+                  )
                 ],
               ),
             ),
