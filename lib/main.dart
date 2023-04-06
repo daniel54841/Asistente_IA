@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:reproductor_ia/views/home/home_view.dart';
-import 'package:reproductor_ia/views/login/login_view.dart';
+import 'package:reproductor_ia/controllers/login_controller.dart';
+import 'package:reproductor_ia/utils/custom_routes.dart';
 
 void main() {
+  Get.put(LoginController());
   runApp(const MyApp());
 }
 
@@ -17,16 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       initialRoute: "/login",
-      getPages: [
-        GetPage(
-          name: "/login",
-          page: () => LoginView(),
-        ),
-        GetPage(
-          name: "/home",
-          page: () => HomeView(),
-        )
-      ],
+      getPages: CustomRoutes.getListRoutes(),
     );
   }
 }
