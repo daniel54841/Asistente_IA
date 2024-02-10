@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.reproductor_ia">
    <application
-        android:label="reproductor_ia"
+        android:label="Jarvis\nAsistente Personalizado"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

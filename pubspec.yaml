@@ -39,6 +39,8 @@ dependencies:
   swipeable_card_stack: 0.0.5
   lottie: 2.3.1
   swipable_stack: 2.0.0
+
+
 dev_dependencies:
 
 
