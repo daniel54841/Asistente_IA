@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:reproductor_ia/controllers/login_controller.dart';
 
 class CustomTextFormFields extends StatelessWidget {
-  const CustomTextFormFields({
+  final TextEditingController ctrl;
+  final IconData icon;
+  final String titleLabel;
+  final LoginController loginCtrl;
+
+  const
+  CustomTextFormFields({
     Key? key,
     required this.ctrl,
     required this.icon,
     required this.titleLabel,
+    required this.loginCtrl,
   }) : super(key: key);
-  final TextEditingController ctrl;
-  final IconData icon;
-  final String titleLabel;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,6 +26,12 @@ class CustomTextFormFields extends StatelessWidget {
         15,
       ),
       child: TextFormField(
+        onTap: (){
+          loginCtrl.updateLogo(false);
+        },
+        onTapOutside: (event) {
+            loginCtrl.updateLogo(true);
+        },
         controller: ctrl,
         obscureText: false,
         decoration: InputDecoration(

@@ -124,12 +124,14 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                                           ctrl: emailAddressController!,
                                           icon: Icons.email_outlined,
                                           titleLabel: "E-mail",
+                                          loginCtrl: _loginCtrl,
                                         ),
                                         //TextFormField de la contraseña
                                         CustomTextFormFields(
                                           ctrl: passwordController!,
                                           icon: Icons.lock_outline,
                                           titleLabel: "Password",
+                                          loginCtrl: _loginCtrl,
                                         ),
                                         //Boton de login
                                         Padding(
