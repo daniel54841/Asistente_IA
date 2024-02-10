@@ -134,10 +134,11 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0, 15, 0, 0),
                                   child: GestureDetector(
-                                    onTap: () {
-                                      _loginCtrl.signInWithEmailAndPassword(
-                                          emailAddressController!.text,
-                                          passwordController!.text);
+                                    onTap: () async {
+                                      await _loginCtrl
+                                          .signInWithEmailAndPassword(
+                                              emailAddressController!.text,
+                                              passwordController!.text);
                                     },
                                     child: Container(
                                       width: responsive.wp(50), //200

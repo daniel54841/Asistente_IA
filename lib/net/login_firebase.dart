@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+
+import '../widgets/dialogs/error_custom_dialog.dart';
 
 /**
  * Clase que servirá para definir
@@ -14,15 +15,18 @@ class LoginFirebase {
       return "Success";
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
+        await ErrorCustomDialog.errorDialog(
+            "Email incorrecto. No está asociado a ningun correo guardado.\nIntentelo de nuevo");
         return 'No user found for that email.';
       } else if (e.code == 'wrong-password') {
+        await ErrorCustomDialog.errorDialog(
+            "Contraseña incorrecta.\nIntentelo de nuevo");
         return 'Wrong password provided for that user.';
       } else {
+        await ErrorCustomDialog.errorDialog(
+            "Ha ocurrido un error inesperado.\nCompruebe la conexion y vuelve a intentarlo.");
         return e.message;
       }
-    } catch (e) {
-      debugPrint("Exception in login with LoginFirebase: " + e.toString());
-      return e.toString();
     }
   }
 }

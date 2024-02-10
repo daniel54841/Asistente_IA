@@ -19,17 +19,22 @@ class LoginController extends GetxController {
   //Metodos que consumen los metodos definidos en login_firebase
   ///TODO: pelearse con los dialogos para mostrar alertDialog cuando ocurra un error
 
-  void signInWithEmailAndPassword(String user, String password) async {
+  Future<void> signInWithEmailAndPassword(String user, String password) async {
     try {
       bool userOk = await _checkUser(user) == "ok";
       bool passOk = await _checkPassword(password) == "ok";
       if (userOk && passOk) {
+        /*   await LoadingCustomDialog.loadingDialog();*/
         String? result = await _operations.login(user, password);
         if (result != null) {
           if (result == "Success") {
+            Get.back();
             Get.offAndToNamed("home");
           }
         }
+      } else {
+        await ErrorCustomDialog.errorDialog(
+            "No se ha introducido ningun valor.\nVuelve a intentarlo.");
       }
     } catch (e) {
       debugPrint("Exception in signInWithEmailAndPassword: " + e.toString());
@@ -51,7 +56,7 @@ class LoginController extends GetxController {
       //vacio
       await ErrorCustomDialog.errorDialog(
           "No se ha introducido ningun correo.\nEs necesario introducir uno valido para iniciar sesion");
-      return "vacio";
+      return "";
     }
   }
 
@@ -73,7 +78,5 @@ class LoginController extends GetxController {
 
       return "";
     }
-
-    return "";
   }
 }

@@ -3,6 +3,9 @@ import 'package:get/get.dart';
 
 class ErrorCustomDialog {
   static Future<Widget> errorDialog(String texto) async {
+    if (Get.isDialogOpen!) {
+      Get.back();
+    }
     return await Get.defaultDialog(
       title: "Error",
       content: Text(
