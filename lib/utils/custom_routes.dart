@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+/*import '../views/home/home_view.dart';*/
 import '../views/home/home_view.dart';
 import '../views/login/login_view.dart';
 
