@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reproductor_ia/net/login_firebase.dart';
+import 'package:reproductor_ia/widgets/dialogs/error_custom_dialog.dart';
 
 class LoginController extends GetxController {
   bool isRepeat = true;
@@ -20,7 +21,9 @@ class LoginController extends GetxController {
 
   void signInWithEmailAndPassword(String user, String password) async {
     try {
-      if (_checkUser(user) == "" && _checkPassword(password) == "") {
+      bool userOk = await _checkUser(user) == "ok";
+
+      if (userOk && _checkPassword(password) == "ok") {
         String? result = await _operations.login(user, password);
         if (result != null) {
           if (result == "Success") {
@@ -35,14 +38,21 @@ class LoginController extends GetxController {
     }
   }
 
-  String _checkUser(String user) {
+  Future<String> _checkUser(String user) async {
     if (user.isNotEmpty) {
       if (user.isEmail) {
-        return "";
+        return "ok";
       } else {
-        return "no valido";
+        //no valiod
+        await ErrorCustomDialog.errorDialog(
+            "Correo introducido no valido.\nVuelve a intentarlo.");
+
+        return "";
       }
     } else {
+      //vacio
+      await ErrorCustomDialog.errorDialog(
+          "No se ha introducido ningun correo.\nEs necesario introducir uno valido para iniciar sesion");
       return "vacio";
     }
   }
@@ -50,12 +60,14 @@ class LoginController extends GetxController {
   String _checkPassword(String password) {
     if (password.isNotEmpty) {
       if (password.length > 1 && password.length < 10) {
-        return "";
+        return "ok";
       } else {
-        return "no valido";
+        //no valido
+        return "";
       }
     } else {
-      return "vacio";
+      //vacio
+      return "";
     }
 
     return "";
