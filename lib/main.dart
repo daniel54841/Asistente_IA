@@ -1,10 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reproductor_ia/controllers/login_controller.dart';
 import 'package:reproductor_ia/utils/custom_routes.dart';
 
-void main() {
+Future<void> main() async {
   Get.put(LoginController());
+  //Firebase inicializacion
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
