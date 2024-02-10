@@ -22,16 +22,14 @@ class LoginController extends GetxController {
   void signInWithEmailAndPassword(String user, String password) async {
     try {
       bool userOk = await _checkUser(user) == "ok";
-
-      if (userOk && _checkPassword(password) == "ok") {
+      bool passOk = await _checkPassword(password) == "ok";
+      if (userOk && passOk) {
         String? result = await _operations.login(user, password);
         if (result != null) {
           if (result == "Success") {
             Get.offAndToNamed("home");
           }
         }
-      } else {
-        throw ("Usuario o contraseña no cumplen con requisitos.");
       }
     } catch (e) {
       debugPrint("Exception in signInWithEmailAndPassword: " + e.toString());
@@ -57,16 +55,22 @@ class LoginController extends GetxController {
     }
   }
 
-  String _checkPassword(String password) {
+  Future<String> _checkPassword(String password) async {
     if (password.isNotEmpty) {
       if (password.length > 1 && password.length < 10) {
         return "ok";
       } else {
-        //no valido
+        await ErrorCustomDialog.errorDialog(
+            "Contraseña no valida, supera la longitud permitida.\nVuelve a intentarlo.");
+
         return "";
       }
     } else {
       //vacio
+      await ErrorCustomDialog.errorDialog(
+          "No se ha introducido ninguna contraseña."
+          "\nEs necesario introducir una valida para iniciar sesion");
+
       return "";
     }
 
