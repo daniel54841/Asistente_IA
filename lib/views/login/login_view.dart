@@ -17,13 +17,11 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
   TextEditingController? emailAddressController;
   TextEditingController? passwordController;
-  late SwipableStackController swipeableCardSectionController;
   final _unfocusNode = FocusNode();
   final LoginController _loginCtrl = Get.find<LoginController>();
   @override
   void initState() {
     super.initState();
-    swipeableCardSectionController = SwipableStackController();
     emailAddressController = TextEditingController();
     passwordController = TextEditingController();
   }
@@ -186,122 +184,6 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                       ],
                     ),
                   ),
-                  SwipableStack(
-                    builder: (context, swipeProperty) {
-                      return [
-                        () => Container(
-                              width: responsive.dp(100),
-                              height: responsive.dp(100),
-                              decoration: BoxDecoration(
-                                color: const Color(0x83E00B67),
-                                borderRadius: BorderRadius.circular(100),
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const [
-                                      Text('+more',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 52)),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                        () => Container(
-                              width: responsive.dp(75),
-                              height: responsive.dp(75),
-                              decoration: BoxDecoration(
-                                color: const Color(0xF3E0C30B),
-                                borderRadius: BorderRadius.circular(100),
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: const [
-                                      Text(
-                                        'music',
-                                        style: TextStyle(
-                                          fontSize: 35,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                        /* () => Container(
-                                    width: 100,
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xF3E0C30B),
-                                      borderRadius: BorderRadius.circular(100),
-                                    ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: const [
-                                            Text('on your phone',
-                                                style: TextStyle(
-                                                  fontSize: 35,
-                                                )),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                              () => Container(
-                                    width: 100,
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(100),
-                                    ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: const [
-                                            Text(
-                                              'in your phone',
-                                              style: TextStyle(
-                                                fontSize: 40,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),*/
-                      ][swipeProperty.index]();
-                    },
-                    itemCount: 2,
-                    controller: swipeableCardSectionController,
-                    allowVerticalSwipe: false,
-                    onSwipeCompleted: (index, direction) {
-                      if (index == 1) {
-                        //cambiar a 2
-                        _loginCtrl.updateLogo(false);
-                      }
-                    },
-                  )
                 ],
               ),
             ),
