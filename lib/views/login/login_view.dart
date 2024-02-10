@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:reproductor_ia/utils/assets_route.dart';
 import 'package:swipable_stack/swipable_stack.dart';
 
 import '../../controllers/login_controller.dart';
@@ -109,8 +110,9 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                                       children: [
                                         GetBuilder(
                                           builder: (LoginController ctrl) {
-                                            return Lottie.network(
-                                              'https://assets8.lottiefiles.com/packages/lf20_li0pgakp.json',
+                                           //'https://assets8.lottiefiles.com/packages/lf20_li0pgakp.json'
+                                            return Lottie.asset(
+                                              AssetsRoute.animationPath("Jarvis_Animation"),
                                               width: responsive.wp(35), //150
                                               height: responsive.hp(22), //130
                                               fit: BoxFit.cover,

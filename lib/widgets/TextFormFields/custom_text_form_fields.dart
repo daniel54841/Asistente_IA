@@ -27,10 +27,10 @@ class CustomTextFormFields extends StatelessWidget {
       ),
       child: TextFormField(
         onTap: (){
-          loginCtrl.updateLogo(false);
+          loginCtrl.updateLogo(true);
         },
         onTapOutside: (event) {
-            loginCtrl.updateLogo(true);
+            loginCtrl.updateLogo(false);
         },
         controller: ctrl,
         obscureText: false,
