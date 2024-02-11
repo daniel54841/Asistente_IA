@@ -79,7 +79,6 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                     decoration: const BoxDecoration(
                       color: Colors.transparent,
                     ),
-                    //Caja de atras
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(
                           responsive.dp(2),
@@ -160,10 +159,10 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                                           10,
                                         ),
                                       ),
-                                      child: Center(
+                                      child: const Center(
                                         child: Text(
                                           "Acceso",
-                                          style: const TextStyle(
+                                          style: TextStyle(
                                             color: Colors.black,
                                           ),
                                         ),
@@ -171,12 +170,6 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                                     ),
                                   ),
                                 ),
-                                /*CustomButton(
-                                  onTap: () {
-                                    debugPrint("Navegando a registro");
-                                  },
-                                  title: 'Crear una nueva cuenta',
-                                ),*/
                               ],
                             ),
                           ),
