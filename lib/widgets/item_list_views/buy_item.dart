@@ -33,20 +33,15 @@ class BuyItem extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          FAProgressBar(
-                            backgroundColor: Colors.blueGrey,
-                            size: responsive.dp(5),
-                            changeColorValue: 2,
-                            currentValue: 14, //valor que progresa
-                            changeProgressColor: Colors.lightGreenAccent,
-                            maxValue: 15, //maximo valor que puede progresar
-                          ),
-                          Text(
-                            "14/15",
-                          ),
-                        ],
+                      child: FAProgressBar(
+                        backgroundColor: Colors.blueGrey,
+                        size: responsive.dp(5),
+                        displayText: "/15",
+                        displayTextStyle: TextStyle(color: Colors.black),
+                        changeColorValue: 2,
+                        currentValue: 1, //valor que progresa
+                        changeProgressColor: Colors.lightGreenAccent,
+                        maxValue: 15, //maximo valor que puede progresar
                       ),
                     ),
                   ),
