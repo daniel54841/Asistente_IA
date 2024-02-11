@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../widgets/dialogs/error_custom_dialog.dart';
 
@@ -32,6 +33,10 @@ class LoginFirebase {
             "Ha ocurrido un error inesperado.\nCompruebe la conexion y vuelve a intentarlo.");
         return e.message;
       }
+    } catch (e) {
+      debugPrint("Exception in login-LoginFirebase: ${e.toString()}");
+      await ErrorCustomDialog.errorDialog(
+          "Ha ocurrido un error inesperado.\nCompruebe la conexion y vuelve a intentarlo.");
     }
   }
 }
