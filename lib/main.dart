@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reproductor_ia/controllers/login_controller.dart';
-import 'package:reproductor_ia/utils/custom_routes.dart';
+import 'package:reproductor_ia/utils/routes/custom_routes.dart';
 
 Future<void> main() async {
   Get.put(LoginController());
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: "/login",
+      initialRoute: "/home",
       getPages: CustomRoutes.getListRoutes(),
     );
   }
