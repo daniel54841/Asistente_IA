@@ -22,7 +22,12 @@ class LoginFirebase {
         await ErrorCustomDialog.errorDialog(
             "Contraseña incorrecta.\nIntentelo de nuevo");
         return 'Wrong password provided for that user.';
-      } else {
+      } else if (e.code == "user-disabled") {
+        await ErrorCustomDialog.errorDialog(
+            "Cuenta deshabilitada por el administrador.");
+        return "The given email has been disabled";
+      }
+      {
         await ErrorCustomDialog.errorDialog(
             "Ha ocurrido un error inesperado.\nCompruebe la conexion y vuelve a intentarlo.");
         return e.message;
