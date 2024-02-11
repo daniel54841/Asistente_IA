@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ErrorCustomDialog {
-  static Future<Widget> errorDialog(String texto) async {
+  static Future<dynamic> errorDialog(String texto) async {
     if (Get.isDialogOpen!) {
       Get.back();
     }
-    return await Get.defaultDialog(
+    return Get.defaultDialog(
       title: "Error",
       content: Text(
         texto,
