@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reproductor_ia/net/login_firebase.dart';
+import 'package:reproductor_ia/utils/constants/general_constants.dart';
 import 'package:reproductor_ia/widgets/dialogs/error_custom_dialog.dart';
 
 class LoginController extends GetxController {
+  ///variables
   bool isRepeat = true;
+  late BuildContext context;
+  final LoginFirebase _operations = LoginFirebase();
+
+  ///fin variables
 
   void updateLogo(bool value) {
     isRepeat = value;
     update();
   }
 
-  late BuildContext context;
-
   ///Inicializacion de operaciones que corresponden con firebase(Auth)
-  final LoginFirebase _operations = LoginFirebase();
 
-  //Metodos que consumen los metodos definidos en login_firebase
-  ///TODO: pelearse con los dialogos para mostrar alertDialog cuando ocurra un error
+  ///TODO: Poner loading al iniciar sesion
 
   Future<void> signInWithEmailAndPassword(String user, String password) async {
     try {
@@ -33,11 +35,10 @@ class LoginController extends GetxController {
           }
         }
       } else {
-        await ErrorCustomDialog.errorDialog(
-            "No se ha introducido ningun valor.\nVuelve a intentarlo.");
+        await ErrorCustomDialog.errorDialog(GeneralConstants.empty_value);
       }
     } catch (e) {
-      debugPrint("Exception in signInWithEmailAndPassword: " + e.toString());
+      debugPrint("Exception in signInWithEmailAndPassword: $e");
     }
   }
 
@@ -47,15 +48,13 @@ class LoginController extends GetxController {
         return "ok";
       } else {
         //no valiod
-        await ErrorCustomDialog.errorDialog(
-            "Correo introducido no valido.\nVuelve a intentarlo.");
+        await ErrorCustomDialog.errorDialog(GeneralConstants.email_wrong);
 
         return "";
       }
     } else {
       //vacio
-      await ErrorCustomDialog.errorDialog(
-          "No se ha introducido ningun correo.\nEs necesario introducir uno valido para iniciar sesion");
+      await ErrorCustomDialog.errorDialog(GeneralConstants.empty_value);
       return "";
     }
   }
@@ -65,16 +64,13 @@ class LoginController extends GetxController {
       if (password.length > 1 && password.length < 10) {
         return "ok";
       } else {
-        await ErrorCustomDialog.errorDialog(
-            "Contraseña no valida, supera la longitud permitida.\nVuelve a intentarlo.");
+        await ErrorCustomDialog.errorDialog(GeneralConstants.password_wrong);
 
         return "";
       }
     } else {
       //vacio
-      await ErrorCustomDialog.errorDialog(
-          "No se ha introducido ninguna contraseña."
-          "\nEs necesario introducir una valida para iniciar sesion");
+      await ErrorCustomDialog.errorDialog(GeneralConstants.empty_value);
 
       return "";
     }

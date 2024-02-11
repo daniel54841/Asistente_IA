@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:reproductor_ia/utils/constants/general_constants.dart';
 
 import '../widgets/dialogs/error_custom_dialog.dart';
 
@@ -16,27 +17,22 @@ class LoginFirebase {
       return "Success";
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        await ErrorCustomDialog.errorDialog(
-            "Email incorrecto. No está asociado a ningun correo guardado.\nIntentelo de nuevo");
+        await ErrorCustomDialog.errorDialog(GeneralConstants.email_not_found);
         return 'No user found for that email.';
       } else if (e.code == 'wrong-password') {
-        await ErrorCustomDialog.errorDialog(
-            "Contraseña incorrecta.\nIntentelo de nuevo");
+        await ErrorCustomDialog.errorDialog(GeneralConstants.wrong_password);
         return 'Wrong password provided for that user.';
       } else if (e.code == "user-disabled") {
-        await ErrorCustomDialog.errorDialog(
-            "Cuenta deshabilitada por el administrador.");
+        await ErrorCustomDialog.errorDialog(GeneralConstants.user_disabled);
         return "The given email has been disabled";
       }
       {
-        await ErrorCustomDialog.errorDialog(
-            "Ha ocurrido un error inesperado.\nCompruebe la conexion y vuelve a intentarlo.");
+        await ErrorCustomDialog.errorDialog(GeneralConstants.generic_error);
         return e.message;
       }
     } catch (e) {
       debugPrint("Exception in login-LoginFirebase: ${e.toString()}");
-      await ErrorCustomDialog.errorDialog(
-          "Ha ocurrido un error inesperado.\nCompruebe la conexion y vuelve a intentarlo.");
+      await ErrorCustomDialog.errorDialog(GeneralConstants.generic_error);
     }
   }
 }
