@@ -4,8 +4,11 @@ import 'package:get/get.dart';
 import 'package:reproductor_ia/controllers/login_controller.dart';
 import 'package:reproductor_ia/utils/routes/custom_routes.dart';
 
+import 'controllers/home_controller.dart';
+
 Future<void> main() async {
   Get.put(LoginController());
+  Get.put(HomeController());
   //Firebase inicializacion
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

@@ -14,7 +14,7 @@ class CustomRoutes {
       ),
       GetPage(
         name: "/home",
-        page: () => const HomeView(),
+        page: () => HomeView(),
       ),
       GetPage(
         name: "/detail_list",
