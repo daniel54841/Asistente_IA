@@ -32,7 +32,7 @@ class HomeView extends StatelessWidget {
           ),
         ),
       ),
-      body: Expanded(
+      body: Container(
           child: _ctrl.dataBuy.isNotEmpty
               ? GetBuilder(
                   builder: (HomeController controller) {
@@ -44,22 +44,7 @@ class HomeView extends StatelessWidget {
                     );
                   },
                 )
-              : EmptyWidgetList(ctrl: _ctrl)
-
-          /*GetBuilder(
-          builder: (HomeController ctrl) {
-            return */ /*ctrl.dataBuy.isNotEmpty
-                ? ListView.builder(
-                    itemBuilder: (context, index) {
-                      return BuyItem();
-                    },
-                    itemCount: ctrl.dataBuy.length,
-                  )
-                :*/ /*
-                Container();
-          },
-        ),*/
-          ),
+              : EmptyWidgetList(ctrl: _ctrl)),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(
