@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:get/get.dart';
+import 'package:reproductor_ia/utils/constants/list_buy_constants.dart';
 
+import '../../controllers/models/Buy.dart';
 import '../../utils/responsive.dart';
 
-class BuyItem extends StatelessWidget {
-  const BuyItem({super.key});
+class ListBuyItem extends StatelessWidget {
+  final List<Buy?> item;
+  final int index;
+  const ListBuyItem({super.key, required this.item, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -14,17 +18,25 @@ class BuyItem extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
         onTap: () {
-          Get.toNamed("/detail_list");
+          Get.toNamed(
+            "/detail_list",
+            arguments: {
+              "itemData": item,
+              "indice": index,
+            },
+          );
         },
         child: Card(
           color: Colors.grey,
           child: Column(
             children: [
-              const Row(
+              Row(
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text("Titulo"),
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      item[index]!.nombre!,
+                    ),
                   )
                 ],
               ),
@@ -48,13 +60,13 @@ class BuyItem extends StatelessWidget {
                   PopupMenuButton(
                     itemBuilder: (context) {
                       return [
-                        PopupMenuItem(
-                          child: Text("Renombrar"),
+                        const PopupMenuItem(
                           value: 1,
+                          child: Text(BuyConstants.renameItem),
                         ),
-                        PopupMenuItem(
-                          child: Text("Borrar"),
+                        const PopupMenuItem(
                           value: 2,
+                          child: Text(BuyConstants.deleteItem),
                         )
                       ];
                     },

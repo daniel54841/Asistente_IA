@@ -5,7 +5,7 @@ import 'package:reproductor_ia/utils/constants/home_constants.dart';
 import 'package:reproductor_ia/widgets/common/empty_widget_list.dart';
 
 import '../../utils/responsive.dart';
-import '../../widgets/item_list_views/buy_item.dart';
+import '../../widgets/item_list_views/list_buy_item.dart';
 
 class HomeView extends StatelessWidget {
   final HomeController _ctrl = Get.find<HomeController>();
@@ -26,25 +26,31 @@ class HomeView extends StatelessWidget {
         title: Text(
           HomeConstants.titleHome,
           style: TextStyle(
-            fontSize: responsive.dp(5),
+            fontSize: responsive.dp(2.5),
             fontWeight: FontWeight.bold,
             color: Colors.black,
           ),
         ),
       ),
-      body: Container(
-          child: _ctrl.dataBuy.isNotEmpty
-              ? GetBuilder(
-                  builder: (HomeController controller) {
-                    return ListView.builder(
-                      itemBuilder: (context, index) {
-                        return BuyItem();
-                      },
-                      itemCount: controller.dataBuy.length,
-                    );
-                  },
-                )
-              : EmptyWidgetList(ctrl: _ctrl)),
+      body: GetBuilder(
+        builder: (HomeController ctrl) {
+          if (ctrl.dataBuy.isNotEmpty) {
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                return ListBuyItem(
+                  item: ctrl.getItems(index),
+                  index: index,
+                );
+              },
+              itemCount: ctrl.dataBuy.values.length,
+            );
+          } else {
+            return EmptyWidgetList(
+              ctrl: _ctrl,
+            );
+          }
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         child: const Icon(

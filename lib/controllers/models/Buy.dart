@@ -7,5 +7,10 @@ class Buy {
   String? precio;
   String? tienda;
 
-  Buy({required this.nombre, required this.cantidad, this.precio, this.tienda});
+  Buy({
+    required this.nombre,
+    this.cantidad,
+    this.precio,
+    this.tienda,
+  });
 }

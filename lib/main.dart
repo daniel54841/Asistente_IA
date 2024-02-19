@@ -5,10 +5,12 @@ import 'package:reproductor_ia/controllers/login_controller.dart';
 import 'package:reproductor_ia/utils/routes/custom_routes.dart';
 
 import 'controllers/home_controller.dart';
+import 'controllers/list_buy_item_controller.dart';
 
 Future<void> main() async {
   Get.put(LoginController());
   Get.put(HomeController());
+  Get.put(ListBuyItemController());
   //Firebase inicializacion
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
