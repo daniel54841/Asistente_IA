@@ -1,11 +1,11 @@
 import 'dart:math';
 
-import 'package:get/get.dart';
+import 'package:reproductor_ia/controllers/base_controller.dart';
 import 'package:reproductor_ia/utils/assets_route.dart';
 
 import 'models/Buy.dart';
 
-class HomeController extends GetxController {
+class HomeController extends BaseController {
   Map<String, List<Buy>> dataBuy = {};
   //cargar la imagen aleatoria de la pantalla vacia cuando
   //esta vacia las listas

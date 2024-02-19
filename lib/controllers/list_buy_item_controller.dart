@@ -1,3 +1,3 @@
-import 'package:get/get.dart';
+import 'package:reproductor_ia/controllers/base_controller.dart';
 
-class ListBuyItemController extends GetxController {}
+class ListBuyItemController extends BaseController {}
