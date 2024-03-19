@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:reproductor_ia/controllers/base_controller.dart';
+import 'package:reproductor_ia/controllers/home_controller.dart';
 import 'package:reproductor_ia/utils/constants/home_constants.dart';
 
 import '../../utils/responsive.dart';
 
 class EmptyWidgetList extends StatelessWidget {
-  final BaseController ctrl;
+  final HomeController ctrl;
   EmptyWidgetList({super.key, required this.ctrl});
 
   @override
