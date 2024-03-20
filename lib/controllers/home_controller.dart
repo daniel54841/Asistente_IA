@@ -5,6 +5,7 @@ import 'package:reproductor_ia/persistencia/sqlInicialice.dart';
 import 'package:reproductor_ia/utils/assets_route.dart';
 
 import 'models/compra.dart';
+import 'models/tienda.dart';
 
 class HomeController extends BaseController {
   Map<String, List<Compra>> dataBuy = {};
@@ -29,13 +30,16 @@ class HomeController extends BaseController {
     getDataBuy();
   }
 
+  /*@override
+  void dispose() {
+    super.dispose();
+    SqlInicialice.closeDB();
+  }*/
+
   //cargar la lista de datos para comprar( lista de listas)
-  void getDataBuy() {
-    Compra buy1 = Compra(nombre: "Fruteria");
-    Compra buy2 = Compra(nombre: "Mercadona");
-    dataBuy.putIfAbsent(buy1.nombre!, () => [buy1]);
-    /*  dataBuy.putIfAbsent(buy2.nombre!, () => [buy2]);
-    dataBuy.putIfAbsent("", () => [Buy(nombre: '')]);*/
+  Future<void> getDataBuy() async {
+    Tienda tienda = Tienda("Mercadona", false);
+    await SqlInicialice.insertTienda(tienda);
     update();
   }
 
