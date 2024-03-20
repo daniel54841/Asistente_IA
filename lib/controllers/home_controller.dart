@@ -1,12 +1,13 @@
 import 'dart:math';
 
-import 'package:get/get.dart';
+import 'package:reproductor_ia/controllers/base_controller.dart';
+import 'package:reproductor_ia/persistencia/sqlInicialice.dart';
 import 'package:reproductor_ia/utils/assets_route.dart';
 
-import 'models/Buy.dart';
+import 'models/compra.dart';
 
-class HomeController extends GetxController {
-  Map<String, List<Buy>> dataBuy = {};
+class HomeController extends BaseController {
+  Map<String, List<Compra>> dataBuy = {};
   //cargar la imagen aleatoria de la pantalla vacia cuando
   //esta vacia las listas
   String getLoadEmptyList() {
@@ -24,13 +25,14 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    SqlInicialice.createDB();
     getDataBuy();
   }
 
   //cargar la lista de datos para comprar( lista de listas)
   void getDataBuy() {
-    Buy buy1 = Buy(nombre: "Fruteria");
-    Buy buy2 = Buy(nombre: "Mercadona");
+    Compra buy1 = Compra(nombre: "Fruteria");
+    Compra buy2 = Compra(nombre: "Mercadona");
     dataBuy.putIfAbsent(buy1.nombre!, () => [buy1]);
     /*  dataBuy.putIfAbsent(buy2.nombre!, () => [buy2]);
     dataBuy.putIfAbsent("", () => [Buy(nombre: '')]);*/
@@ -38,7 +40,7 @@ class HomeController extends GetxController {
   }
 
   //obtener la lista de items a partir de la posicion
-  List<Buy> getItems(int pos) {
+  List<Compra> getItems(int pos) {
     return dataBuy.values.toList()[pos];
   }
 }

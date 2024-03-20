@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:reproductor_ia/controllers/home_controller.dart';
+import 'package:reproductor_ia/controllers/base_controller.dart';
 import 'package:reproductor_ia/utils/constants/home_constants.dart';
 
 import '../../utils/responsive.dart';
 
 class EmptyWidgetList extends StatelessWidget {
-  final HomeController ctrl;
+  final BaseController ctrl;
   EmptyWidgetList({super.key, required this.ctrl});
 
   @override
@@ -35,7 +35,7 @@ class EmptyWidgetList extends StatelessWidget {
               child: Text(
                 HomeConstants.labelEmptyList,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                   fontSize: responsive.dp(1.5),
                   fontWeight: FontWeight.bold,
                 ),

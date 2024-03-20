@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reproductor_ia/net/login_firebase.dart';
+import 'package:reproductor_ia/persistencia/sqlInicialice.dart';
 import 'package:reproductor_ia/utils/constants/general_constants.dart';
 import 'package:reproductor_ia/widgets/dialogs/error_custom_dialog.dart';
 
@@ -9,9 +10,13 @@ class LoginController extends GetxController {
   bool isRepeat = true;
   late BuildContext context;
   final LoginFirebase _operations = LoginFirebase();
+  @override
+  void onInit() {
+    super.onInit();
+    SqlInicialice.createDB();
+  }
 
   ///fin variables
-
   void updateLogo(bool value) {
     isRepeat = value;
     update();
