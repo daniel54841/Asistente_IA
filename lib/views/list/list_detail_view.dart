@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:reproductor_ia/controllers/list_buy_item_controller.dart';
 import 'package:reproductor_ia/widgets/common/empty_widget_list.dart';
 
-import '../../../controllers/models/Buy.dart';
+import '../../../controllers/models/compra.dart';
 
 class ListDetailView extends StatefulWidget {
   const ListDetailView({super.key});
@@ -13,13 +13,13 @@ class ListDetailView extends StatefulWidget {
 }
 
 class _ListDetailViewState extends State<ListDetailView> {
-  List<Buy> buy = [];
+  List<Compra> buy = [];
   int indice = 0;
   @override
   void initState() {
     super.initState();
     setState(() {
-      buy = Get.arguments["itemData"] as List<Buy>;
+      buy = Get.arguments["itemData"] as List<Compra>;
       indice = Get.arguments["indice"] as int;
     });
     debugPrint("Informacion pasada: $buy");

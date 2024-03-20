@@ -3,11 +3,11 @@ import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.da
 import 'package:get/get.dart';
 import 'package:reproductor_ia/utils/constants/list_buy_constants.dart';
 
-import '../../controllers/models/Buy.dart';
+import '../../controllers/models/compra.dart';
 import '../../utils/responsive.dart';
 
 class ListBuyItem extends StatelessWidget {
-  final List<Buy?> item;
+  final List<Compra?> item;
   final int index;
   const ListBuyItem({super.key, required this.item, required this.index});
 

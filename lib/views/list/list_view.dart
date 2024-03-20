@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:reproductor_ia/controllers/home_controller.dart';
 import 'package:reproductor_ia/utils/constants/home_constants.dart';
 
-import '../../utils/responsive.dart';
-import '../../widgets/common/empty_widget_list.dart';
-import '../../widgets/item_list_views/list_buy_item.dart';
+import '../../../utils/responsive.dart';
+import '../../../widgets/common/empty_widget_list.dart';
+import '../../../widgets/item_list_views/list_buy_item.dart';
 
 class List_View extends StatelessWidget {
   final HomeController _ctrl = Get.find<HomeController>();
@@ -13,22 +13,17 @@ class List_View extends StatelessWidget {
   Widget build(BuildContext context) {
     Responsive responsive = Responsive.of(context);
     return Scaffold(
-      drawer: const Drawer(
-        child: Column(
-          children: [
-            Text("Home"),
-          ],
-        ),
-      ),
-      backgroundColor: Theme.of(context).splashColor,
+      backgroundColor: Theme.of(context).canvasColor,
       appBar: AppBar(
         backgroundColor: Theme.of(context).splashColor,
-        title: Text(
-          HomeConstants.titleHome,
-          style: TextStyle(
-            fontSize: responsive.dp(2.5),
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
+        title: Center(
+          child: Text(
+            HomeConstants.titleHome,
+            style: TextStyle(
+              fontSize: responsive.dp(2.5),
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
           ),
         ),
       ),
