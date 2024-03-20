@@ -10,10 +10,9 @@ class SqlInicialice {
 
   static Database? _database;
 
-  static String createTableCompras =
-      "CREATE TABLE Compra(id INTEGER AUTO_INCREMENT PRIMARY KEY,nombre TEXT,cantidad INTEGER,precio INTEGER, tienda TEXT,totalGastado INTEGER)";
+  static String createTableCompras = "CREATE TABLE Compra(nombre TEXT,cantidad INTEGER,precio INTEGER, tienda TEXT,totalGastado INTEGER)";
   // esFavorite == true ? 1 : 0
-  static String createTableTienda = "CREATE TABLE Tienda (id INTEGER AUTO_INCREMENT PRIMARY KEY, tiendaNombre TEXT, esFavorite INTEGER)";
+  static String createTableTienda = "CREATE TABLE Tienda (tiendaNombre TEXT, esFavorite INTEGER)";
 
   Future<Database> get database async {
     if (_database != null) return _database!;
@@ -74,17 +73,46 @@ class SqlInicialice {
     }
   }
 
-  Future<List<Tienda>> getTodasLasTiendas() async {
-    List<Tienda> tiendasGuardadas = [];
+  static Future<List<Tienda>> getTodasLasTiendas() async {
+    /*Database? db = await instance.database;
+    if (db == null) {
+      // Handle the case when the database is null
+      // For example, return an error message or throw an exception
+      throw ("Database is null");
+    }
+    List<Tienda> list = [];
     try {
-      List<Map> maps = await _database!.rawQuery(
+      List<Map<String, dynamic>> queryResults = await db.rawQuery(
         "SELECT * FROM Tienda",
       );
-      if (maps.isNotEmpty) {}
+      list = queryResults.map((e) => Tienda.fromMap(e)).toList();
+
       return [];
     } catch (e) {
+      GeneralConstants.logger.e("Excepcion al obtener todas las tiendas: $e");
+      return [];
+    }*/
+    Database db = await instance.database;
+
+    List<Tienda> list = [];
+    try {
+      List<Map<String, dynamic>> queryResults = await db.rawQuery(
+        "SELECT * FROM Tienda",
+      );
+
+      for (Map<String, dynamic> mapa in queryResults) {
+        list.add(Tienda.fromMap(mapa));
+      }
+
+      GeneralConstants.logger.i("Numero de elementos de la BD en tabla Tienda: ${list.length}");
+      /* list = queryResults.map((e) => Tienda.fromMap(e)).toList();*/
+    } catch (e) {
+      // Handle any exceptions that might occur during the query
+      GeneralConstants.logger.e("Excepcion al obtener todas las tiendas: $e");
       return [];
     }
+
+    return list;
   }
 
   //Operaciones de Tienda

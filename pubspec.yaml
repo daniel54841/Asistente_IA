@@ -69,7 +69,7 @@ flutter:
   assets:
     - assets/animations/
     - assets/animations/empty_list/
-    - assets/imagenes/
+  # - assets/imagenes/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -27,6 +27,7 @@ class HomeController extends BaseController {
   void onInit() {
     super.onInit();
     SqlInicialice.createDB();
+    /*createTienda();*/
     getDataBuy();
   }
 
@@ -38,13 +39,16 @@ class HomeController extends BaseController {
 
   //cargar la lista de datos para comprar( lista de listas)
   Future<void> getDataBuy() async {
-    Tienda tienda = Tienda("Mercadona", false);
-    await SqlInicialice.insertTienda(tienda);
+    List<Tienda> tienda = await SqlInicialice.getTodasLasTiendas();
     update();
   }
 
   //obtener la lista de items a partir de la posicion
   List<Compra> getItems(int pos) {
     return dataBuy.values.toList()[pos];
+  }
+
+  Future<void> createTienda() async {
+    await SqlInicialice.insertTienda(Tienda("Mercadona", false));
   }
 }

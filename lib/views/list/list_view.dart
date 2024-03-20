@@ -29,7 +29,7 @@ class List_View extends StatelessWidget {
       ),
       body: GetBuilder(
         builder: (HomeController controller) {
-          if (controller.dataBuy.isEmpty) {
+          if (controller.dataBuy.isNotEmpty) {
             return ListView.builder(
               itemBuilder: (context, index) {
                 return ListBuyItem(
