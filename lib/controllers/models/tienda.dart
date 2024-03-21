@@ -1,8 +1,10 @@
+import 'compra.dart';
+
 class Tienda {
   String? tiendaNombre;
   bool? esFavorite;
-
-  Tienda(this.tiendaNombre, this.esFavorite);
+  List<Compra>? compras;
+  Tienda(this.tiendaNombre, this.esFavorite, this.compras);
 
   Map<String, dynamic> toMap() {
     Map<String, dynamic> map = <String, dynamic>{

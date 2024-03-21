@@ -1,5 +1,3 @@
-import 'package:reproductor_ia/controllers/models/tienda.dart';
-
 ///Modelo de la lista de la compra que corresponde a un item
 class Compra {
   //si o si
@@ -8,13 +6,12 @@ class Compra {
   //opcionales
   int? precio;
   int? totalGastado;
-  Tienda? tienda;
+  String? tienda;
 
   Compra({
     required this.nombre,
     this.cantidad,
     this.precio,
-    this.tienda,
   });
 
   Map<String, dynamic> toMap() {
@@ -23,16 +20,16 @@ class Compra {
       "cantidad": cantidad,
       "precio": precio,
       "totalGastado": totalGastado,
-      "tienda": tienda?.tiendaNombre,
+      "tienda": tienda
     };
     return map;
   }
 
   Compra.fromMap(Map<String, dynamic> map) {
-    nombre = map[nombre];
-    cantidad = map[cantidad];
-    precio = map[precio];
-    tienda = map[tienda];
-    totalGastado = map[totalGastado];
+    nombre = map["nombre"];
+    cantidad = map["cantidad"];
+    precio = map["precio"];
+    tienda = map["tienda"];
+    totalGastado = map["totalGastado"];
   }
 }
