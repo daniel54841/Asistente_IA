@@ -46,22 +46,6 @@ class SqlInicialice {
     );
   }
 
-  /* static Future<void> openDB() async {
-    var databasesPath = await getDatabasesPath();
-    String path = "$databasesPath/miBD.db";
-    _database = await openDatabase(
-      path,
-      version: 1,
-    );
-  }*/
-
-  /* static Future<void> closeDB() async {
-    var databasesPath = await getDatabasesPath();
-    String path = "$databasesPath/miBD.db";
-    // Close the database
-    await _database!.close();
-  }*/
-
 //Operaciones de Compras
   static Future<void> insertCompra(Compra compra) async {
     try {
@@ -73,45 +57,24 @@ class SqlInicialice {
     }
   }
 
-  static Future<List<Tienda>> getTodasLasTiendas() async {
-    /*Database? db = await instance.database;
-    if (db == null) {
-      // Handle the case when the database is null
-      // For example, return an error message or throw an exception
-      throw ("Database is null");
-    }
-    List<Tienda> list = [];
-    try {
-      List<Map<String, dynamic>> queryResults = await db.rawQuery(
-        "SELECT * FROM Tienda",
-      );
-      list = queryResults.map((e) => Tienda.fromMap(e)).toList();
-
-      return [];
-    } catch (e) {
-      GeneralConstants.logger.e("Excepcion al obtener todas las tiendas: $e");
-      return [];
-    }*/
+  static Future<List<Compra>> getTodasLasCompras() async {
     Database db = await instance.database;
 
-    List<Tienda> list = [];
+    List<Compra> list = [];
     try {
       final queryResults = await db.rawQuery(
-        "SELECT * FROM Tienda",
+        "SELECT * FROM Compra",
       );
 
       for (Map<String, dynamic> mapa in queryResults) {
-        Tienda tiendaToAdd = Tienda.fromMap(mapa);
-        list.add(tiendaToAdd);
-        GeneralConstants.logger.i("Elemento que se quiere añadir a la lista: $tiendaToAdd");
+        Compra compraToAdd = Compra.fromMap(mapa);
+        list.add(compraToAdd);
       }
 
-      GeneralConstants.logger.i("Numero de elementos de la BD en tabla Tienda: ${list.length}");
-
-      /* list = queryResults.map((e) => Tienda.fromMap(e)).toList();*/
+      GeneralConstants.logger.i("Numero de elementos de la BD en tabla Compra: ${list.length}");
     } catch (e) {
       // Handle any exceptions that might occur during the query
-      GeneralConstants.logger.e("Excepcion al obtener todas las tiendas: $e");
+      GeneralConstants.logger.e("Excepcion al obtener todas las compras: $e");
       return [];
     }
 
@@ -127,5 +90,29 @@ class SqlInicialice {
     } catch (e) {
       GeneralConstants.logger.e("Excepcion al insertar tienda: $e");
     }
+  }
+
+  static Future<List<Tienda>> getTodasLasTiendas() async {
+    Database db = await instance.database;
+
+    List<Tienda> list = [];
+    try {
+      final queryResults = await db.rawQuery(
+        "SELECT * FROM Tienda",
+      );
+
+      for (Map<String, dynamic> mapa in queryResults) {
+        Tienda tiendaToAdd = Tienda.fromMap(mapa);
+        list.add(tiendaToAdd);
+      }
+
+      GeneralConstants.logger.i("Numero de elementos de la BD en tabla Tienda: ${list.length}");
+    } catch (e) {
+      // Handle any exceptions that might occur during the query
+      GeneralConstants.logger.e("Excepcion al obtener todas las tiendas: $e");
+      return [];
+    }
+
+    return list;
   }
 }
