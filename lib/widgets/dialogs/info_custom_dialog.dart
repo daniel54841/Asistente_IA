@@ -9,6 +9,7 @@ class InfoCustomDialog extends StatelessWidget {
   final String body;
   final String titleButton;
   final String? route;
+  final dynamic arguments;
 
   InfoCustomDialog({
     Key? key,
@@ -16,6 +17,7 @@ class InfoCustomDialog extends StatelessWidget {
     required this.body,
     required this.titleButton,
     this.route,
+    this.arguments,
   }) : super(key: key);
 
   @override
@@ -62,7 +64,12 @@ class InfoCustomDialog extends StatelessWidget {
                   if (route == null) {
                     Get.back();
                   } else {
-                    Get.toNamed(route!);
+                    Get.offAndToNamed(
+                      route!,
+                      arguments: {
+                        "tienda": arguments,
+                      },
+                    );
                   }
                 },
                 child: Container(

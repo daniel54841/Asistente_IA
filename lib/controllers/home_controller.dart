@@ -57,8 +57,6 @@ class HomeController extends BaseController {
     if (etCtrl.text != "") {
       bool tiendaIsRepeat = await comprobarRepeticion(etCtrl.text);
       if (!tiendaIsRepeat) {
-        isFavorite = false;
-        etCtrl.clear();
         bool finish = await SqlInicialice.insertTienda(Tienda(etCtrl.text, isFavorite, []));
         if (finish) {
           Get.dialog(
@@ -67,9 +65,16 @@ class HomeController extends BaseController {
               title: GeneralConstants.titleDialogInfo,
               body: HomeConstants.labelInfoTiendaCreadaCorrectamente,
               titleButton: GeneralConstants.labelButtonDialogInfo,
-              route: "/home",
+              route: "/detail_list",
+              arguments: Tienda(
+                etCtrl.text,
+                isFavorite,
+                [],
+              ),
             ),
           );
+          isFavorite = false;
+          etCtrl.clear();
         } else {
           InfoCustomDialog(
             title: GeneralConstants.titleDialogInfo,
