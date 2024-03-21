@@ -40,10 +40,7 @@ class _ListDetailViewState extends State<ListDetailView> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(
-                right: responsive.wp(1.5),
-                left: responsive.wp(1.5),
-              ),
+              padding: EdgeInsets.only(right: responsive.wp(1.5), left: responsive.wp(1.5), top: responsive.hp(2.5)),
               child: FAProgressBar(
                 backgroundColor: Colors.blueGrey,
                 size: responsive.dp(2.5),
@@ -57,7 +54,14 @@ class _ListDetailViewState extends State<ListDetailView> {
           ],
         ),
       ),
-
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.toNamed("/new_compra");
+        },
+        child: const Icon(
+          Icons.add,
+        ),
+      ),
       /**
         return EmptyWidgetList(
           ctrl: ctrl,

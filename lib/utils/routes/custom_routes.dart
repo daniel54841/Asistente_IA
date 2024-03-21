@@ -4,6 +4,7 @@ import 'package:reproductor_ia/views/list/list_new_item.dart';
 import '../../views/home/home_view.dart';
 import '../../views/list/list_compra_view.dart';
 import '../../views/list/list_detail_view.dart';
+import '../../views/list/new_compra.dart';
 import '../../views/login/login_view.dart';
 
 class CustomRoutes {
@@ -28,6 +29,10 @@ class CustomRoutes {
       GetPage(
         name: "/new_item_list",
         page: () => ListNewItem(),
+      ),
+      GetPage(
+        name: "/new_compra",
+        page: () => NewCompra(),
       )
     ];
   }
