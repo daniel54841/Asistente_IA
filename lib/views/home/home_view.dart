@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../controllers/provider/provider.dart';
-import '../list/list_view.dart';
+import '../list/list_compra_view.dart';
 
 class HomeView extends ConsumerWidget {
   const HomeView({super.key});
@@ -10,7 +10,7 @@ class HomeView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final bodies = [
-      List_View(),
+      ListCompraView(),
       const Center(
         child: Text('Hello From Settings Screen'),
       ),

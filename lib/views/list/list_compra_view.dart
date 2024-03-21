@@ -7,8 +7,7 @@ import '../../../utils/responsive.dart';
 import '../../../widgets/common/empty_widget_list.dart';
 import '../../../widgets/item_list_views/list_buy_item.dart';
 
-class List_View extends StatelessWidget {
-  final HomeController _ctrl = Get.find<HomeController>();
+class ListCompraView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Responsive responsive = Responsive.of(context);

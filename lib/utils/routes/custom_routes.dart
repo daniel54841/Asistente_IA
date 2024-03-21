@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
 import '../../views/home/home_view.dart';
+import '../../views/list/list_compra_view.dart';
 import '../../views/list/list_detail_view.dart';
-import '../../views/list/list_view.dart';
 import '../../views/login/login_view.dart';
 
 class CustomRoutes {
@@ -18,7 +18,7 @@ class CustomRoutes {
       ),
       GetPage(
         name: "/list",
-        page: () => List_View(),
+        page: () => ListCompraView(),
       ),
       GetPage(
         name: "/detail_list",

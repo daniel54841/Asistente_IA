@@ -3,11 +3,11 @@ import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.da
 import 'package:get/get.dart';
 import 'package:reproductor_ia/utils/constants/list_buy_constants.dart';
 
-import '../../controllers/models/compra.dart';
+import '../../controllers/models/tienda.dart';
 import '../../utils/responsive.dart';
 
 class ListBuyItem extends StatelessWidget {
-  final List<Compra?> item;
+  final List<Tienda?> item;
   final int index;
   const ListBuyItem({super.key, required this.item, required this.index});
 
@@ -35,7 +35,7 @@ class ListBuyItem extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      item[index]!.nombre!,
+                      item[index]!.tiendaNombre!,
                     ),
                   )
                 ],
