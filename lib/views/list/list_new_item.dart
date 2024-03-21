@@ -9,7 +9,7 @@ import '../../widgets/common/empty_widget_list.dart';
 
 class ListNewItem extends StatefulWidget {
   ListNewItem({Key? key}) : super(key: key);
-  final TextEditingController etCtrl = new TextEditingController();
+
   @override
   State<ListNewItem> createState() => _ListNewItemState();
 }
@@ -42,10 +42,12 @@ class _ListNewItemState extends State<ListNewItem> {
             showMessage: false,
             sizeAnimation: 20,
           ),
-          CustomTextFormFields(
-            ctrl: widget.etCtrl,
-            titleLabel: HomeConstants.labelNuevaLista,
-          ),
+          GetBuilder(builder: (HomeController ctrl) {
+            return CustomTextFormFields(
+              ctrl: ctrl.etCtrl,
+              titleLabel: HomeConstants.labelNuevaLista,
+            );
+          }),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -99,7 +101,10 @@ class _ListNewItemState extends State<ListNewItem> {
             padding: const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
             child: GestureDetector(
               onTap: () {
-                _homeCtrl.createTienda(widget.etCtrl.text, _homeCtrl.isFavorite, responsive);
+                _homeCtrl.createTienda(
+                  _homeCtrl.isFavorite,
+                  responsive,
+                );
               },
               child: Container(
                 width: responsive.wp(50), //200

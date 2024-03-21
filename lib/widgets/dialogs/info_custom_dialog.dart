@@ -8,12 +8,14 @@ class InfoCustomDialog extends StatelessWidget {
   final String title;
   final String body;
   final String titleButton;
+  final String? route;
 
   InfoCustomDialog({
     Key? key,
     required this.title,
     required this.body,
     required this.titleButton,
+    this.route,
   }) : super(key: key);
 
   @override
@@ -22,20 +24,31 @@ class InfoCustomDialog extends StatelessWidget {
     return Dialog(
       backgroundColor: Colors.transparent,
       child: Container(
-        padding: EdgeInsets.all(responsive.dp(5)),
-        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
+        padding: EdgeInsets.all(
+          responsive.dp(5),
+        ),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Center(
-              child: Text(title),
+              child: Text(
+                title,
+              ),
             ),
             SizedBox(
-              height: responsive.hp(1.5),
+              height: responsive.hp(
+                1.5,
+              ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+              ),
               child: Text(
                 body,
               ),
@@ -46,7 +59,11 @@ class InfoCustomDialog extends StatelessWidget {
               ),
               child: GestureDetector(
                 onTap: () {
-                  Get.back();
+                  if (route == null) {
+                    Get.back();
+                  } else {
+                    Get.toNamed(route!);
+                  }
                 },
                 child: Container(
                   alignment: Alignment.center,

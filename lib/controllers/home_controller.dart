@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:reproductor_ia/controllers/base_controller.dart';
 import 'package:reproductor_ia/persistencia/sqlInicialice.dart';
@@ -15,6 +16,9 @@ class HomeController extends BaseController {
   bool isFavorite = false;
   bool isTemporal = false;
   bool changeVista = false;
+
+  TextEditingController etCtrl = TextEditingController();
+
   Map<String, List<Tienda>> dataBuy = {};
   //cargar la imagen aleatoria de la pantalla vacia cuando
   //esta vacia las listas
@@ -49,11 +53,13 @@ class HomeController extends BaseController {
     return dataBuy.values.toList()[pos];
   }
 
-  Future<void> createTienda(String title, bool isFavorite, Responsive responsive) async {
-    if (title != "") {
-      bool tiendaIsRepeat = await comprobarRepeticion(title);
+  Future<void> createTienda(bool isFavorite, Responsive responsive) async {
+    if (etCtrl.text != "") {
+      bool tiendaIsRepeat = await comprobarRepeticion(etCtrl.text);
       if (!tiendaIsRepeat) {
-        bool finish = await SqlInicialice.insertTienda(Tienda(title, isFavorite, []));
+        isFavorite = false;
+        etCtrl.clear();
+        bool finish = await SqlInicialice.insertTienda(Tienda(etCtrl.text, isFavorite, []));
         if (finish) {
           Get.dialog(
             barrierDismissible: false,
@@ -61,6 +67,7 @@ class HomeController extends BaseController {
               title: GeneralConstants.titleDialogInfo,
               body: HomeConstants.labelInfoTiendaCreadaCorrectamente,
               titleButton: GeneralConstants.labelButtonDialogInfo,
+              route: "/home",
             ),
           );
         } else {
