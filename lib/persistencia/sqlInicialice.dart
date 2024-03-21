@@ -96,15 +96,18 @@ class SqlInicialice {
 
     List<Tienda> list = [];
     try {
-      List<Map<String, dynamic>> queryResults = await db.rawQuery(
+      final queryResults = await db.rawQuery(
         "SELECT * FROM Tienda",
       );
 
       for (Map<String, dynamic> mapa in queryResults) {
-        list.add(Tienda.fromMap(mapa));
+        Tienda tiendaToAdd = Tienda.fromMap(mapa);
+        list.add(tiendaToAdd);
+        GeneralConstants.logger.i("Elemento que se quiere añadir a la lista: $tiendaToAdd");
       }
 
       GeneralConstants.logger.i("Numero de elementos de la BD en tabla Tienda: ${list.length}");
+
       /* list = queryResults.map((e) => Tienda.fromMap(e)).toList();*/
     } catch (e) {
       // Handle any exceptions that might occur during the query

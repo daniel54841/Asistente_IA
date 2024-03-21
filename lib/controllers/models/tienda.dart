@@ -13,7 +13,7 @@ class Tienda {
   }
 
   Tienda.fromMap(Map<String, dynamic> map) {
-    tiendaNombre = map[tiendaNombre];
-    esFavorite = map[esFavorite] == 1;
+    tiendaNombre = map["tiendaNombre"];
+    esFavorite = map["esFavorite"] == 1;
   }
 }
