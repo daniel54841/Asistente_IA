@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:reproductor_ia/views/list/list_new_item.dart';
 
 import '../../views/home/home_view.dart';
 import '../../views/list/list_compra_view.dart';
@@ -24,6 +25,10 @@ class CustomRoutes {
         name: "/detail_list",
         page: () => const ListDetailView(),
       ),
+      GetPage(
+        name: "/new_item_list",
+        page: () => ListNewItem(),
+      )
     ];
   }
 }

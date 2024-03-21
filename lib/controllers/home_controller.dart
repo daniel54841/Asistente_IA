@@ -22,6 +22,7 @@ class HomeController extends BaseController {
     }
   }
 
+  List<Tienda> tienda = [];
   @override
   void onInit() {
     super.onInit();
@@ -31,7 +32,7 @@ class HomeController extends BaseController {
 
   //cargar la lista de datos para comprar( lista de listas)
   Future<void> getDataBuy() async {
-    List<Tienda> tienda = await SqlInicialice.getTodasLasTiendas();
+    tienda = await SqlInicialice.getTodasLasTiendas();
     update();
   }
 

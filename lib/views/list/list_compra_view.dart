@@ -46,7 +46,9 @@ class ListCompraView extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.toNamed("/new_item_list");
+        },
         child: const Icon(
           Icons.add,
         ),
