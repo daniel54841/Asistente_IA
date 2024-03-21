@@ -7,7 +7,16 @@ import '../../utils/responsive.dart';
 
 class EmptyWidgetList extends StatelessWidget {
   final BaseController ctrl;
-  EmptyWidgetList({super.key, required this.ctrl});
+
+  final bool? showMessage;
+  final double? sizeAnimation;
+
+  EmptyWidgetList({
+    super.key,
+    required this.ctrl,
+    this.showMessage,
+    this.sizeAnimation,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +31,8 @@ class EmptyWidgetList extends StatelessWidget {
               ctrl.getLoadEmptyList(),
               repeat: true,
               animate: true,
-              width: responsive.wp(35), //150
-              height: responsive.hp(22), //130
+              width: sizeAnimation == null ? responsive.wp(35) : responsive.wp(sizeAnimation!), //150
+              height: sizeAnimation == null ? responsive.hp(22) : responsive.wp(sizeAnimation!), //130
               fit: BoxFit.cover,
             ),
             Padding(
@@ -32,12 +41,15 @@ class EmptyWidgetList extends StatelessWidget {
                 right: responsive.dp(10),
                 left: responsive.dp(10),
               ),
-              child: Text(
-                HomeConstants.labelEmptyList,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: responsive.dp(1.5),
-                  fontWeight: FontWeight.bold,
+              child: Visibility(
+                visible: showMessage != null ? showMessage! : true,
+                child: Text(
+                  HomeConstants.labelEmptyList,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: responsive.dp(1.5),
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             )

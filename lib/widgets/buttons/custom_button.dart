@@ -13,7 +13,7 @@ class CustomButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
       child: GestureDetector(
-        onTap: onTap(),
+        onTap: () => onTap,
         child: Container(
           width: responsive.wp(50), //200
           height: responsive.dp(4), //55
