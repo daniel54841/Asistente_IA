@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:get/get.dart';
-import 'package:reproductor_ia/controllers/list_buy_item_controller.dart';
-import 'package:reproductor_ia/widgets/common/empty_widget_list.dart';
 
 import '../../../controllers/models/compra.dart';
 import '../../controllers/models/tienda.dart';
+import '../../utils/responsive.dart';
 
 class ListDetailView extends StatefulWidget {
   const ListDetailView({super.key});
@@ -28,6 +28,7 @@ class _ListDetailViewState extends State<ListDetailView> {
 
   @override
   Widget build(BuildContext context) {
+    Responsive responsive = Responsive.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -35,13 +36,40 @@ class _ListDetailViewState extends State<ListDetailView> {
         ),
         backgroundColor: Theme.of(context).splashColor,
       ),
-      body: GetBuilder(
+      body: Center(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                right: responsive.wp(1.5),
+                left: responsive.wp(1.5),
+              ),
+              child: FAProgressBar(
+                backgroundColor: Colors.blueGrey,
+                size: responsive.dp(2.5),
+                displayTextStyle: TextStyle(color: Colors.black),
+                changeColorValue: 2,
+                currentValue: 1, //valor que progresa
+                changeProgressColor: Colors.lightGreenAccent,
+                maxValue: 15, //maximo valor que puede progresar
+              ),
+            ),
+          ],
+        ),
+      ),
+
+      /**
+        return EmptyWidgetList(
+          ctrl: ctrl,
+          );
+
+          GetBuilder(
         builder: (ListBuyItemController ctrl) {
-          return EmptyWidgetList(
-            ctrl: ctrl,
+          return Container(
+            child: Text("Contador total de items que tiene en forma redondeada que se va a ir actualizando segun se quiten los elementos"),
           );
         },
-      ),
+      ),*/
     );
   }
 }
