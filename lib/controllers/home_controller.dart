@@ -4,11 +4,10 @@ import 'package:reproductor_ia/controllers/base_controller.dart';
 import 'package:reproductor_ia/persistencia/sqlInicialice.dart';
 import 'package:reproductor_ia/utils/assets_route.dart';
 
-import 'models/compra.dart';
 import 'models/tienda.dart';
 
 class HomeController extends BaseController {
-  Map<String, List<Compra>> dataBuy = {};
+  Map<String, List<Tienda>> dataBuy = {};
   //cargar la imagen aleatoria de la pantalla vacia cuando
   //esta vacia las listas
   String getLoadEmptyList() {
@@ -27,15 +26,8 @@ class HomeController extends BaseController {
   void onInit() {
     super.onInit();
     SqlInicialice.createDB();
-    /*createTienda();*/
     getDataBuy();
   }
-
-  /*@override
-  void dispose() {
-    super.dispose();
-    SqlInicialice.closeDB();
-  }*/
 
   //cargar la lista de datos para comprar( lista de listas)
   Future<void> getDataBuy() async {
@@ -44,11 +36,11 @@ class HomeController extends BaseController {
   }
 
   //obtener la lista de items a partir de la posicion
-  List<Compra> getItems(int pos) {
+  List<Tienda> getItems(int pos) {
     return dataBuy.values.toList()[pos];
   }
 
   Future<void> createTienda() async {
-    await SqlInicialice.insertTienda(Tienda("Mercadona", false));
+    await SqlInicialice.insertTienda(Tienda("Mercadona", false, []));
   }
 }
