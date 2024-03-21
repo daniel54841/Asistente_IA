@@ -5,7 +5,7 @@ import 'package:reproductor_ia/utils/assets_route.dart';
 
 import '../../controllers/login_controller.dart';
 import '../../utils/responsive.dart';
-import '../../widgets/TextFormFields/custom_text_form_fields.dart';
+import '../../widgets/TextFormFields/custom_text_login_form_fields.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -81,10 +81,7 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                     ),
                     child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(
-                          responsive.dp(2),
-                          responsive.dp(2),
-                          responsive.dp(2),
-                          responsive.dp(2)), //25 en todas
+                          responsive.dp(2), responsive.dp(2), responsive.dp(2), responsive.dp(2)), //25 en todas
                       child: Container(
                         width: responsive.dp(30), //100
                         height: responsive.dp(30),
@@ -93,8 +90,7 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                           borderRadius: BorderRadius.circular(30),
                         ),
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              responsive.hp(2.1), 0, responsive.hp(2.1), 0), //5
+                          padding: EdgeInsetsDirectional.fromSTEB(responsive.hp(2.1), 0, responsive.hp(2.1), 0), //5
                           child: SingleChildScrollView(
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
@@ -104,8 +100,7 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                                   builder: (LoginController ctrl) {
                                     //'https://assets8.lottiefiles.com/packages/lf20_li0pgakp.json'
                                     return Lottie.asset(
-                                      AssetsRoute.animationPath(
-                                          "Jarvis_Animation"),
+                                      AssetsRoute.animationPath("Jarvis_Animation"),
                                       width: responsive.wp(35), //150
                                       height: responsive.hp(22), //130
                                       fit: BoxFit.cover,
@@ -130,14 +125,10 @@ class _LoginViewState extends State<LoginView> with TickerProviderStateMixin {
                                 ),
                                 //Boton de login
                                 Padding(
-                                  padding: const EdgeInsetsDirectional.fromSTEB(
-                                      0, 15, 0, 0),
+                                  padding: const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
                                   child: GestureDetector(
                                     onTap: () async {
-                                      await _loginCtrl
-                                          .signInWithEmailAndPassword(
-                                              emailAddressController!.text,
-                                              passwordController!.text);
+                                      await _loginCtrl.signInWithEmailAndPassword(emailAddressController!.text, passwordController!.text);
                                     },
                                     child: Container(
                                       width: responsive.wp(50), //200
