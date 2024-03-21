@@ -82,13 +82,15 @@ class SqlInicialice {
   }
 
   //Operaciones de Tienda
-  static Future<void> insertTienda(Tienda tienda) async {
+  static Future<bool> insertTienda(Tienda tienda) async {
     try {
       Database db = await instance.database;
       int? insertCorrect = await db.insert("Tienda", tienda.toMap());
       GeneralConstants.logger.i("Numero de inserciones de forma correcta: $insertCorrect");
+      return true;
     } catch (e) {
       GeneralConstants.logger.e("Excepcion al insertar tienda: $e");
+      return false;
     }
   }
 

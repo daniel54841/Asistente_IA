@@ -17,5 +17,10 @@ class GeneralConstants {
 
   static String password_wrong = "Contraseña no valida, supera la longitud permitida.\nVuelve a intentarlo.";
 
+  static const String titleAdvertenciaDialogInfo = "ADVERTENCIA!!!";
+  static const String titleDialogInfo = "INFO";
+
+  static const String labelButtonDialogInfo = "Aceptar";
+
   static Logger logger = Logger();
 }
