@@ -6,17 +6,22 @@ import '../../utils/responsive.dart';
 class CustomTextFormFields extends StatelessWidget {
   final TextEditingController ctrl;
   final String titleLabel;
-  const CustomTextFormFields({
+  final dynamic getCtrl;
+  CustomTextFormFields({
     Key? key,
     required this.ctrl,
     required this.titleLabel,
+    this.getCtrl,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Responsive responsive = Responsive.of(context);
     return Padding(
-      padding: EdgeInsetsDirectional.only(start: responsive.wp(5), end: responsive.wp(5)),
+      padding: EdgeInsetsDirectional.only(
+        start: responsive.wp(5),
+        end: responsive.wp(5),
+      ),
       child: Card(
         elevation: 0.0,
         color: MyColors.lightGrey,
@@ -30,6 +35,12 @@ class CustomTextFormFields extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: responsive.wp(3.5)),
           child: TextField(
+            onEditingComplete: () {
+              if (getCtrl != null) {
+                getCtrl.haveAnyItem(ctrl.text);
+              }
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
             //keyboardType: widget.inputType,
             controller: ctrl,
             decoration: InputDecoration(
