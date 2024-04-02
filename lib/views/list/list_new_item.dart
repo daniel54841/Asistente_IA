@@ -35,109 +35,111 @@ class _ListNewItemState extends State<ListNewItem> {
           ),
         ),
       ),
-      body: Column(
-        children: [
-          EmptyWidgetList(
-            ctrl: _homeCtrl,
-            showMessage: false,
-            sizeAnimation: 20,
-          ),
-          GetBuilder(builder: (HomeController ctrl) {
-            return CustomTextFormFields(
-              ctrl: ctrl.etCtrl,
-              titleLabel: HomeConstants.labelNuevaLista,
-            );
-          }),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GetBuilder(
-                builder: (HomeController ctrl) {
-                  return Switch(
-                    value: ctrl.isFavorite,
-                    onChanged: (value) {
-                      ctrl.updateFavorite(value);
-                    },
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            EmptyWidgetList(
+              ctrl: _homeCtrl,
+              showMessage: false,
+              sizeAnimation: 20,
+            ),
+            GetBuilder(builder: (HomeController ctrl) {
+              return CustomTextFormFields(
+                ctrl: ctrl.etCtrl,
+                titleLabel: HomeConstants.labelNuevaLista,
+              );
+            }),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GetBuilder(
+                  builder: (HomeController ctrl) {
+                    return Switch(
+                      value: ctrl.isFavorite,
+                      onChanged: (value) {
+                        ctrl.updateFavorite(value);
+                      },
+                    );
+                  },
+                ),
+                SizedBox(
+                  width: responsive.wp(2.5),
+                ),
+                const Text(HomeConstants.labelAddFavorite),
+              ],
+            ),
+            Visibility(
+              visible: false,
+              child: Flexible(
+                flex: 2,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: responsive.hp(1.5)),
+                      child: GetBuilder(
+                        builder: (HomeController ctrl) {
+                          return Switch(
+                            value: ctrl.isTemporal,
+                            onChanged: (value) {
+                              ctrl.updateIsTemporal(value);
+                            },
+                          );
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      width: responsive.wp(2.5),
+                    ),
+                    const Text(HomeConstants.labelAddFavorite),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+              child: GestureDetector(
+                onTap: () {
+                  _homeCtrl.createTienda(
+                    _homeCtrl.isFavorite,
+                    responsive,
                   );
                 },
-              ),
-              SizedBox(
-                width: responsive.wp(2.5),
-              ),
-              const Text(HomeConstants.labelAddFavorite),
-            ],
-          ),
-          Visibility(
-            visible: false,
-            child: Flexible(
-              flex: 2,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: responsive.hp(1.5)),
-                    child: GetBuilder(
-                      builder: (HomeController ctrl) {
-                        return Switch(
-                          value: ctrl.isTemporal,
-                          onChanged: (value) {
-                            ctrl.updateIsTemporal(value);
-                          },
-                        );
-                      },
+                child: Container(
+                  width: responsive.wp(50), //200
+                  height: responsive.dp(4), //55
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [
+                        Color(0xAE4B39EF),
+                        Colors.lightBlueAccent,
+                      ],
+                      stops: [
+                        0,
+                        1,
+                      ],
+                      begin: AlignmentDirectional(0, -1),
+                      end: AlignmentDirectional(0, -1),
+                    ),
+                    borderRadius: BorderRadius.circular(
+                      10,
                     ),
                   ),
-                  SizedBox(
-                    width: responsive.wp(2.5),
-                  ),
-                  const Text(HomeConstants.labelAddFavorite),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
-            child: GestureDetector(
-              onTap: () {
-                _homeCtrl.createTienda(
-                  _homeCtrl.isFavorite,
-                  responsive,
-                );
-              },
-              child: Container(
-                width: responsive.wp(50), //200
-                height: responsive.dp(4), //55
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [
-                      Color(0xAE4B39EF),
-                      Colors.lightBlueAccent,
-                    ],
-                    stops: [
-                      0,
-                      1,
-                    ],
-                    begin: AlignmentDirectional(0, -1),
-                    end: AlignmentDirectional(0, -1),
-                  ),
-                  borderRadius: BorderRadius.circular(
-                    10,
-                  ),
-                ),
-                child: Center(
-                  child: Text(
-                    "CREAR",
-                    style: const TextStyle(
-                      color: Colors.black,
+                  child: Center(
+                    child: Text(
+                      "CREAR",
+                      style: const TextStyle(
+                        color: Colors.black,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
