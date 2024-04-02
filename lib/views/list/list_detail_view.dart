@@ -20,7 +20,6 @@ class _ListDetailViewState extends State<ListDetailView> {
   @override
   void initState() {
     super.initState();
-
     /*buy = Get.arguments["itemData"] as List<Compra>;
       indice = Get.arguments["indice"] as int;*/
     tienda = Get.arguments["tienda"] as Tienda;
@@ -44,7 +43,7 @@ class _ListDetailViewState extends State<ListDetailView> {
               child: FAProgressBar(
                 backgroundColor: Colors.blueGrey,
                 size: responsive.dp(2.5),
-                displayTextStyle: TextStyle(color: Colors.black),
+                displayTextStyle: const TextStyle(color: Colors.black),
                 changeColorValue: 2,
                 currentValue: 1, //valor que progresa
                 changeProgressColor: Colors.lightGreenAccent,

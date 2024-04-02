@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reproductor_ia/controllers/home_controller.dart';
-import 'package:reproductor_ia/widgets/TextFormFields/custom_text_field.dart';
+import 'package:reproductor_ia/widgets/TextFormFields/custom_text_form_field.dart';
 
 import '../../utils/constants/home_constants.dart';
 import '../../utils/responsive.dart';
