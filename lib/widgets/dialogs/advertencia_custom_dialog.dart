@@ -8,10 +8,12 @@ import '../../utils/responsive.dart';
 class AdvertenciaCustomDialog extends StatelessWidget {
   final String title;
   final String body;
+  final Function() onTap;
   AdvertenciaCustomDialog({
     Key? key,
     required this.title,
     required this.body,
+    required this.onTap,
   }) : super(key: key);
 
   @override
@@ -25,7 +27,7 @@ class AdvertenciaCustomDialog extends StatelessWidget {
           Center(
             child: Row(
               children: [
-                Icon(
+                const Icon(
                   Icons.warning,
                   color: Colors.amberAccent,
                 ),
@@ -55,9 +57,7 @@ class AdvertenciaCustomDialog extends StatelessWidget {
                   top: responsive.hp(5),
                 ),
                 child: GestureDetector(
-                  onTap: () {
-                    debugPrint("Confirmar la accion de la BD");
-                  },
+                  onTap: onTap,
                   child: Container(
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
@@ -73,9 +73,16 @@ class AdvertenciaCustomDialog extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(
+                width: responsive.hp(
+                  1.5,
+                ),
+              ),
               Padding(
                 padding: EdgeInsets.only(
                   top: responsive.hp(5),
+                  left: responsive.dp(1.5),
+                  right: responsive.dp(1.5),
                 ),
                 child: GestureDetector(
                   onTap: () {
