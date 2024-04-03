@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reproductor_ia/widgets/dialogs/basic_dialog_custom.dart';
 
+import '../../utils/constants/general_constants.dart';
 import '../../utils/constants/my_colors.dart';
 import '../../utils/responsive.dart';
 
@@ -67,8 +68,8 @@ class AdvertenciaCustomDialog extends StatelessWidget {
                         Radius.circular(responsive.dp(1.5)),
                       ),
                     ),
-                    child: Text(
-                      "Confirmar",
+                    child: const Text(
+                      GeneralConstants.labelConfirmarDialogo,
                     ),
                   ),
                 ),
@@ -97,8 +98,8 @@ class AdvertenciaCustomDialog extends StatelessWidget {
                         Radius.circular(responsive.dp(1.5)),
                       ),
                     ),
-                    child: Text(
-                      "Cancelar",
+                    child: const Text(
+                      GeneralConstants.labelCancelarDialogo,
                     ),
                   ),
                 ),

@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reproductor_ia/controllers/base_controller.dart';
 import 'package:reproductor_ia/persistencia/sqlInicialice.dart';
 
+import '../utils/constants/general_constants.dart';
 import '../widgets/dialogs/advertencia_custom_dialog.dart';
 import 'models/busqueda.dart';
 import 'models/compra.dart';
@@ -28,10 +28,6 @@ class ListController extends BaseController {
     if (textoBuscado.isNotEmpty) {
       Busqueda busqueda = Busqueda(producto: textoBuscado);
       SqlInicialice.insertNewBusqueda(busqueda);
-    } else {
-      const SnackBar(
-        content: Text("No se puede añadir un elemento vacio"),
-      );
     }
     update();
     if (datos.isEmpty) {
@@ -47,8 +43,8 @@ class ListController extends BaseController {
       Get.dialog(
         barrierDismissible: false,
         AdvertenciaCustomDialog(
-          title: "Advertencia",
-          body: "Estas seguro de borrar los datos.\n Si continuas se eliminará la informacion de forma permanente.\n¿Deseas continuar?",
+          title: GeneralConstants.titleAdvertenciaDialogInfo,
+          body: GeneralConstants.labelConfirmDeleteDataBD,
           onTap: () async {
             await SqlInicialice.deleteAllBusquedas();
             Get.back();

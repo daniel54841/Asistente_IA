@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.dart';
 import 'package:get/get.dart';
-import 'package:reproductor_ia/utils/constants/list_buy_constants.dart';
+import 'package:reproductor_ia/utils/constants/list_constants.dart';
 
 import '../../controllers/models/tienda.dart';
 import '../../utils/responsive.dart';
@@ -61,11 +61,11 @@ class ListBuyItem extends StatelessWidget {
                       return [
                         const PopupMenuItem(
                           value: 1,
-                          child: Text(BuyConstants.renameItem),
+                          child: Text(ListConstants.rename),
                         ),
                         const PopupMenuItem(
                           value: 2,
-                          child: Text(BuyConstants.deleteItem),
+                          child: Text(ListConstants.delete),
                         )
                       ];
                     },

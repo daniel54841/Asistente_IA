@@ -4,6 +4,7 @@ import 'package:reproductor_ia/controllers/home_controller.dart';
 import 'package:reproductor_ia/widgets/TextFormFields/custom_text_form_field.dart';
 
 import '../../utils/constants/home_constants.dart';
+import '../../utils/constants/list_constants.dart';
 import '../../utils/responsive.dart';
 import '../../widgets/common/empty_widget_list.dart';
 
@@ -43,12 +44,14 @@ class _ListNewItemState extends State<ListNewItem> {
               showMessage: false,
               sizeAnimation: 20,
             ),
-            GetBuilder(builder: (HomeController ctrl) {
-              return CustomTextFormFields(
-                ctrl: ctrl.etCtrl,
-                titleLabel: HomeConstants.labelNuevaLista,
-              );
-            }),
+            GetBuilder(
+              builder: (HomeController ctrl) {
+                return CustomTextFormFields(
+                  ctrl: ctrl.etCtrl,
+                  titleLabel: HomeConstants.labelNuevaLista,
+                );
+              },
+            ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -129,7 +132,7 @@ class _ListNewItemState extends State<ListNewItem> {
                   ),
                   child: Center(
                     child: Text(
-                      "CREAR",
+                      ListConstants.create.toUpperCase(),
                       style: const TextStyle(
                         color: Colors.black,
                       ),
