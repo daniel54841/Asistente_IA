@@ -74,7 +74,7 @@ class SqlInicialice {
     return list;
   }
 
-  //Operaciones de Tienda
+//Operaciones de Tienda
   static Future<bool> insertTienda(Tienda tienda) async {
     try {
       Database db = await instance.database;
@@ -111,7 +111,7 @@ class SqlInicialice {
     return list;
   }
 
-  //Operaciones con Productos de Busqueda
+//Operaciones con Productos de Busqueda
 
   static Future<List<Busqueda>> getProductosBusqueda() async {
     Database db = await instance.database;
@@ -137,7 +137,7 @@ class SqlInicialice {
     return list;
   }
 
-  static Future<bool> insertOrUpdateNewBusqueda(Busqueda busqueda) async {
+  static Future<bool> insertNewBusqueda(Busqueda busqueda) async {
     try {
       Database db = await instance.database;
       int? insertCorrect = await db.insert("Busqueda", busqueda.toMap());
@@ -145,6 +145,18 @@ class SqlInicialice {
       return true;
     } catch (e) {
       GeneralConstants.logger.e("Excepcion al insertar busqueda: $e");
+      return false;
+    }
+  }
+
+  static Future<bool> deleteAllBusquedas() async {
+    try {
+      Database db = await instance.database;
+      int? insertCorrect = await db.delete("Busqueda");
+      GeneralConstants.logger.i("Numero de eliminaciones de forma correcta: $insertCorrect");
+      return true;
+    } catch (e) {
+      GeneralConstants.logger.e("Excepcion al eliminar los elemenos de busqueda: $e");
       return false;
     }
   }
