@@ -5,6 +5,8 @@ import 'package:reproductor_ia/persistencia/sqlInicialice.dart';
 
 import '../widgets/dialogs/advertencia_custom_dialog.dart';
 import 'models/busqueda.dart';
+import 'models/compra.dart';
+import 'models/tienda.dart';
 
 class ListController extends BaseController {
   late List<Busqueda> datos;
@@ -58,6 +60,12 @@ class ListController extends BaseController {
       datos.clear();
     }
 
+    update();
+  }
+
+  Future<void> searchCompra(String? nombreTienda, Tienda tienda) async {
+    List<Compra> result = await SqlInicialice.getCompraFilterByTienda(nombreTienda);
+    tienda.compras = result;
     update();
   }
 }
