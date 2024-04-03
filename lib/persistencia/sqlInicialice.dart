@@ -74,6 +74,31 @@ class SqlInicialice {
     return list;
   }
 
+  static Future<List<Compra>> getCompraFilterByTienda(String? nombreTienda) async {
+    Database db = await instance.database;
+
+    List<Compra> list = [];
+    try {
+      final queryResults = await db.rawQuery(
+        "SELECT * FROM Compra WHERE tienda = '$nombreTienda'",
+      );
+
+      for (Map<String, dynamic> mapa in queryResults) {
+        Compra compraToAdd = Compra.fromMap(mapa);
+        list.add(compraToAdd);
+      }
+
+      GeneralConstants.logger.i(
+          "Numero de elementos de la BD en tabla Compra al filtrar por tienda $nombreTienda: ${list.length} \n{Operacion de filtrado por nombre de tienda en las compras realizadas}");
+    } catch (e) {
+      // Handle any exceptions that might occur during the query
+      GeneralConstants.logger.e("Excepcion al obtener las compras filtradas por nombre de tienda: $e");
+      return [];
+    }
+
+    return list;
+  }
+
 //Operaciones de Tienda
   static Future<bool> insertTienda(Tienda tienda) async {
     try {
