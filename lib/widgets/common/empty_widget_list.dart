@@ -9,6 +9,7 @@ class EmptyWidgetList extends StatelessWidget {
   final BaseController ctrl;
 
   final bool? showMessage;
+  final bool? showSecundaryMessage;
   final double? sizeAnimation;
 
   EmptyWidgetList({
@@ -16,6 +17,7 @@ class EmptyWidgetList extends StatelessWidget {
     required this.ctrl,
     this.showMessage,
     this.sizeAnimation,
+    this.showSecundaryMessage,
   });
 
   @override
@@ -44,7 +46,11 @@ class EmptyWidgetList extends StatelessWidget {
               child: Visibility(
                 visible: showMessage != null ? showMessage! : true,
                 child: Text(
-                  HomeConstants.labelEmptyList,
+                  showSecundaryMessage != null
+                      ? !showSecundaryMessage!
+                          ? HomeConstants.labelEmptyList
+                          : HomeConstants.labelEmptyList
+                      : HomeConstants.labelSecundaryEmptyList,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: responsive.dp(1.5),
