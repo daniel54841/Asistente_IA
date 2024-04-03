@@ -40,7 +40,10 @@ class LoginController extends GetxController {
           }
         }
       } else {
-        await ErrorCustomDialog.errorDialog(GeneralConstants.empty_value);
+        Get.dialog(
+          barrierDismissible: false,
+          ErrorCustomDialog(body: GeneralConstants.empty_value),
+        );
       }
     } catch (e) {
       debugPrint("Exception in signInWithEmailAndPassword: $e");
@@ -53,13 +56,19 @@ class LoginController extends GetxController {
         return "ok";
       } else {
         //no valiod
-        await ErrorCustomDialog.errorDialog(GeneralConstants.email_wrong);
+        Get.dialog(
+          barrierDismissible: false,
+          ErrorCustomDialog(body: GeneralConstants.email_wrong),
+        );
 
         return "";
       }
     } else {
       //vacio
-      await ErrorCustomDialog.errorDialog(GeneralConstants.empty_value);
+      Get.dialog(
+        barrierDismissible: false,
+        ErrorCustomDialog(body: GeneralConstants.empty_value),
+      );
       return "";
     }
   }
@@ -69,14 +78,18 @@ class LoginController extends GetxController {
       if (password.length > 1 && password.length < 10) {
         return "ok";
       } else {
-        await ErrorCustomDialog.errorDialog(GeneralConstants.password_wrong);
-
+        Get.dialog(
+          barrierDismissible: false,
+          ErrorCustomDialog(body: GeneralConstants.password_wrong),
+        );
         return "";
       }
     } else {
       //vacio
-      await ErrorCustomDialog.errorDialog(GeneralConstants.empty_value);
-
+      Get.dialog(
+        barrierDismissible: false,
+        ErrorCustomDialog(body: GeneralConstants.empty_value),
+      );
       return "";
     }
   }
