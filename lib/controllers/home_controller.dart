@@ -48,11 +48,6 @@ class HomeController extends BaseController {
     update();
   }
 
-  //obtener la lista de items a partir de la posicion
-  List<Tienda> getItems(int pos) {
-    return dataBuy.values.toList()[pos];
-  }
-
   Future<void> createTienda(bool isFavorite, Responsive responsive) async {
     if (etCtrl.text != "") {
       bool tiendaIsRepeat = await comprobarRepeticion(etCtrl.text);

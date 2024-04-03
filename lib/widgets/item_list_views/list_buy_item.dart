@@ -7,7 +7,7 @@ import '../../controllers/models/tienda.dart';
 import '../../utils/responsive.dart';
 
 class ListBuyItem extends StatelessWidget {
-  final List<Tienda?> item;
+  final Tienda? /*List<Tienda?>*/ item;
   final int index;
   const ListBuyItem({super.key, required this.item, required this.index});
 
@@ -21,8 +21,7 @@ class ListBuyItem extends StatelessWidget {
           Get.toNamed(
             "/detail_list",
             arguments: {
-              "itemData": item,
-              "indice": index,
+              "tienda": item,
             },
           );
         },
@@ -35,7 +34,7 @@ class ListBuyItem extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      item[index]!.tiendaNombre!,
+                      item!.tiendaNombre!,
                     ),
                   )
                 ],
