@@ -3,6 +3,7 @@ import 'package:flutter_animation_progress_bar/flutter_animation_progress_bar.da
 import 'package:get/get.dart';
 
 import '../../../controllers/models/compra.dart';
+import '../../controllers/list_buy_item_controller.dart';
 import '../../controllers/models/tienda.dart';
 import '../../utils/responsive.dart';
 
@@ -20,9 +21,11 @@ class _ListDetailViewState extends State<ListDetailView> {
   @override
   void initState() {
     super.initState();
-    /*buy = Get.arguments["itemData"] as List<Compra>;
-      indice = Get.arguments["indice"] as int;*/
     tienda = Get.arguments["tienda"] as Tienda;
+    if (tienda.tiendaNombre != null) {
+      ListController _ctrl = Get.find<ListController>();
+      _ctrl.searchCompra(tienda.tiendaNombre);
+    }
   }
 
   @override
@@ -31,7 +34,7 @@ class _ListDetailViewState extends State<ListDetailView> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          /*buy.isNotEmpty ? buy[indice].nombre! :*/ tienda.tiendaNombre!,
+          tienda.tiendaNombre!,
         ),
         backgroundColor: Theme.of(context).splashColor,
       ),
@@ -61,18 +64,6 @@ class _ListDetailViewState extends State<ListDetailView> {
           Icons.add,
         ),
       ),
-      /**
-        return EmptyWidgetList(
-          ctrl: ctrl,
-          );
-
-          GetBuilder(
-        builder: (ListBuyItemController ctrl) {
-          return Container(
-            child: Text("Contador total de items que tiene en forma redondeada que se va a ir actualizando segun se quiten los elementos"),
-          );
-        },
-      ),*/
     );
   }
 }

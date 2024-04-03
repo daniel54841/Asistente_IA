@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:reproductor_ia/controllers/list_buy_item_controller.dart';
+import 'package:reproductor_ia/controllers/list_controller.dart';
 import 'package:reproductor_ia/widgets/TextFormFields/custom_text_form_field.dart';
 import 'package:reproductor_ia/widgets/item_list_views/item_new_producto_busqueda.dart';
 
 class NewCompra extends StatelessWidget {
   NewCompra({Key? key}) : super(key: key);
   final TextEditingController _ctrl = TextEditingController();
-  ListBuyItemController _listCtrl = Get.find<ListBuyItemController>();
+  ListController _listCtrl = Get.find<ListController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +33,7 @@ class NewCompra extends StatelessWidget {
         ),*/
       ),
       body: GetBuilder(
-        builder: (ListBuyItemController ctrl) {
+        builder: (ListController ctrl) {
           return ctrl.datos.isEmpty
               ? Container()
               : ListView.builder(

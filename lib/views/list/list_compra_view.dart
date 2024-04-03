@@ -28,15 +28,15 @@ class ListCompraView extends StatelessWidget {
       ),
       body: GetBuilder(
         builder: (HomeController controller) {
-          if (controller.dataBuy.isNotEmpty) {
+          if (controller.tienda.isNotEmpty) {
             return ListView.builder(
               itemBuilder: (context, index) {
                 return ListBuyItem(
-                  item: controller.getItems(index),
+                  item: controller.tienda[index],
                   index: index,
                 );
               },
-              itemCount: controller.dataBuy.values.length,
+              itemCount: controller.tienda.length,
             );
           } else {
             return EmptyWidgetList(
