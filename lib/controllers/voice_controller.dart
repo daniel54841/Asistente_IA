@@ -1,23 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:speech_to_text/speech_recognition_result.dart';
-import 'package:speech_to_text/speech_to_text.dart';
 
 class VoiceController extends GetxController {
   final SpeechToText _speechToText = SpeechToText();
   bool _speechEnabled = false;
   bool start = false;
   String _lastWords = '';
-  @override
-  void onInit() {
-    _initSpeech();
-    super.onInit();
-  }
 
   /// Esto tiene que suceder solo una vez por aplicación.
   void _initSpeech() async {
     try {
-      _speechEnabled = await _speechToText.initialize();
+      _speechEnabled = await _speechToText.initialize(
+          /* onError: errorListener,
+        onStatus: statusListener,*/
+          );
       update();
     } catch (e) {
       debugPrint("Exception in initSpeech $e");

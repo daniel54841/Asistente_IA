@@ -2,9 +2,6 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:speech_to_text/speech_recognition_error.dart';
-import 'package:speech_to_text/speech_recognition_result.dart';
-import 'package:speech_to_text/speech_to_text.dart';
 
 class WhassapContactView extends StatefulWidget {
   const WhassapContactView({Key? key}) : super(key: key);
@@ -20,10 +17,8 @@ class _WhassapContactViewState extends State<WhassapContactView> {
   bool _hasSpeech = false;
   bool _logEvents = false;
   bool _onDevice = false;
-  final TextEditingController _pauseForController =
-      TextEditingController(text: '3');
-  final TextEditingController _listenForController =
-      TextEditingController(text: '30');
+  final TextEditingController _pauseForController = TextEditingController(text: '3');
+  final TextEditingController _listenForController = TextEditingController(text: '30');
   double level = 0.0;
   double minSoundLevel = 50000;
   double maxSoundLevel = -50000;
@@ -84,8 +79,7 @@ class _WhassapContactViewState extends State<WhassapContactView> {
           Column(
             children: <Widget>[
               InitSpeechWidget(_hasSpeech, initSpeechState),
-              SpeechControlWidget(_hasSpeech, speech.isListening,
-                  startListening, stopListening, cancelListening),
+              SpeechControlWidget(_hasSpeech, speech.isListening, startListening, stopListening, cancelListening),
               SessionOptionsWidget(
                 _currentLocaleId,
                 _switchLang,
@@ -162,8 +156,7 @@ class _WhassapContactViewState extends State<WhassapContactView> {
   /// This callback is invoked each time new recognition results are
   /// available after `listen` is called.
   void resultListener(SpeechRecognitionResult result) {
-    _logEvent(
-        'Result listener final: ${result.finalResult}, words: ${result.recognizedWords}');
+    _logEvent('Result listener final: ${result.finalResult}, words: ${result.recognizedWords}');
     setState(() {
       lastWords = '${result.recognizedWords} - ${result.finalResult}';
     });
@@ -179,16 +172,14 @@ class _WhassapContactViewState extends State<WhassapContactView> {
   }
 
   void errorListener(SpeechRecognitionError error) {
-    _logEvent(
-        'Received error status: $error, listening: ${speech.isListening}');
+    _logEvent('Received error status: $error, listening: ${speech.isListening}');
     setState(() {
       lastError = '${error.errorMsg} - ${error.permanent}';
     });
   }
 
   void statusListener(String status) {
-    _logEvent(
-        'Received listener status: $status, listening: ${speech.isListening}');
+    _logEvent('Received listener status: $status, listening: ${speech.isListening}');
     setState(() {
       lastStatus = status;
     });
@@ -263,12 +254,7 @@ class RecognitionResultsWidget extends StatelessWidget {
                     height: 40,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                            blurRadius: .26,
-                            spreadRadius: level * 1.5,
-                            color: Colors.black.withOpacity(.05))
-                      ],
+                      boxShadow: [BoxShadow(blurRadius: .26, spreadRadius: level * 1.5, color: Colors.black.withOpacity(.05))],
                       color: Colors.white,
                       borderRadius: const BorderRadius.all(Radius.circular(50)),
                     ),
@@ -333,9 +319,7 @@ class ErrorWidget extends StatelessWidget {
 
 /// Controls to start and stop speech recognition
 class SpeechControlWidget extends StatelessWidget {
-  const SpeechControlWidget(this.hasSpeech, this.isListening,
-      this.startListening, this.stopListening, this.cancelListening,
-      {Key? key})
+  const SpeechControlWidget(this.hasSpeech, this.isListening, this.startListening, this.stopListening, this.cancelListening, {Key? key})
       : super(key: key);
 
   final bool hasSpeech;
@@ -367,16 +351,8 @@ class SpeechControlWidget extends StatelessWidget {
 }
 
 class SessionOptionsWidget extends StatelessWidget {
-  const SessionOptionsWidget(
-      this.currentLocaleId,
-      this.switchLang,
-      this.localeNames,
-      this.logEvents,
-      this.switchLogging,
-      this.pauseForController,
-      this.listenForController,
-      this.onDevice,
-      this.switchOnDevice,
+  const SessionOptionsWidget(this.currentLocaleId, this.switchLang, this.localeNames, this.logEvents, this.switchLogging,
+      this.pauseForController, this.listenForController, this.onDevice, this.switchOnDevice,
       {Key? key})
       : super(key: key);
 
@@ -423,9 +399,7 @@ class SessionOptionsWidget extends StatelessWidget {
                   child: TextFormField(
                     controller: pauseForController,
                   )),
-              Container(
-                  padding: const EdgeInsets.only(left: 16),
-                  child: const Text('listenFor: ')),
+              Container(padding: const EdgeInsets.only(left: 16), child: const Text('listenFor: ')),
               Container(
                   padding: const EdgeInsets.only(left: 8),
                   width: 80,
@@ -455,8 +429,7 @@ class SessionOptionsWidget extends StatelessWidget {
 }
 
 class InitSpeechWidget extends StatelessWidget {
-  const InitSpeechWidget(this.hasSpeech, this.initSpeechState, {Key? key})
-      : super(key: key);
+  const InitSpeechWidget(this.hasSpeech, this.initSpeechState, {Key? key}) : super(key: key);
 
   final bool hasSpeech;
   final Future<void> Function() initSpeechState;
