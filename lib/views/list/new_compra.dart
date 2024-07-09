@@ -5,6 +5,7 @@ import 'package:reproductor_ia/widgets/TextFormFields/custom_text_form_field.dar
 import 'package:reproductor_ia/widgets/item_list_views/item_new_producto_busqueda.dart';
 
 import '../../utils/constants/list_constants.dart';
+import '../../utils/constants/my_colors.dart';
 
 class NewCompra extends StatelessWidget {
   NewCompra({Key? key}) : super(key: key);
@@ -37,12 +38,21 @@ class NewCompra extends StatelessWidget {
               : ListView.builder(
                   itemBuilder: (context, index) {
                     return ItemNewProductoBusqueda(
+                      listController: ctrl,
                       productoBuscado: ctrl.datos[index].producto!,
                     );
                   },
                   itemCount: ctrl.datos.length,
                 );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: MyColors.golden,
+        onPressed: () {},
+        child: Icon(
+          Icons.send,
+          color: MyColors.myGreen,
+        ),
       ),
     );
   }

@@ -11,6 +11,10 @@ import 'models/tienda.dart';
 class ListController extends BaseController {
   late List<Busqueda> datos;
   int contador = 0;
+
+  //lista de la compra que se añade a la tienda del detalle actual
+  List<Compra> listCompra = [];
+
   @override
   void onInit() {
     super.onInit();
@@ -62,6 +66,15 @@ class ListController extends BaseController {
   Future<void> searchCompra(String? nombreTienda, Tienda tienda) async {
     List<Compra> result = await SqlInicialice.getCompraFilterByTienda(nombreTienda);
     tienda.compras = result;
+
     update();
+  }
+
+  void addCompraToTienda() {
+    GeneralConstants.logger.i("Operaciones para añadir a la tienda la compra añadida");
+    dynamic myVar = "Hello";
+    if (myVar is String) {
+      print("Variable es String");
+    }
   }
 }

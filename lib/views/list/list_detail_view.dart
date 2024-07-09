@@ -43,28 +43,34 @@ class _ListDetailViewState extends State<ListDetailView> {
         child: GetBuilder(builder: (ListController ctrl) {
           return Column(
             children: [
-              tienda.compras!.isEmpty
+              tienda.compras == null
                   ? EmptyWidgetList(
                       ctrl: ctrl,
                       sizeAnimation: responsive.dp(1.5),
                       showMessage: true,
                     )
-                  : Padding(
-                      padding: EdgeInsets.only(
-                        right: responsive.wp(1.5),
-                        left: responsive.wp(1.5),
-                        top: responsive.hp(2.5),
-                      ),
-                      child: FAProgressBar(
-                        backgroundColor: Colors.blueGrey,
-                        size: responsive.dp(2.5),
-                        displayTextStyle: const TextStyle(color: Colors.black),
-                        changeColorValue: 2,
-                        currentValue: 1, //valor que progresa
-                        changeProgressColor: Colors.lightGreenAccent,
-                        maxValue: tienda.compras!.length.toDouble(), //maximo valor que puede progresar
-                      ),
-                    ),
+                  : tienda.compras!.isEmpty
+                      ? EmptyWidgetList(
+                          ctrl: ctrl,
+                          sizeAnimation: responsive.dp(1.5),
+                          showMessage: true,
+                        )
+                      : Padding(
+                          padding: EdgeInsets.only(
+                            right: responsive.wp(1.5),
+                            left: responsive.wp(1.5),
+                            top: responsive.hp(2.5),
+                          ),
+                          child: FAProgressBar(
+                            backgroundColor: Colors.blueGrey,
+                            size: responsive.dp(2.5),
+                            displayTextStyle: const TextStyle(color: Colors.black),
+                            changeColorValue: 2,
+                            currentValue: 1, //valor que progresa
+                            changeProgressColor: Colors.lightGreenAccent,
+                            maxValue: tienda.compras!.length.toDouble(), //maximo valor que puede progresar
+                          ),
+                        ),
             ],
           );
         }),

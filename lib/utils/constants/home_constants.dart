@@ -11,5 +11,6 @@ class HomeConstants {
   static const String labelInfoTiendaCreadaCorrectamente =
       "La tienda se ha creado de forma correcta. Pulse Aceptar para empezar a añadir elementos a esta lista.";
   static const String labelErrorTiendaCreada = "Ha ocurrido un error al crear la tienda. Intentalo de nuevo y si persiste, mira los logs";
-  static const String labelSecundaryEmptyList = "Pulsa sobre el boton de añadir en la parte inferior para añadir elementos a la lista";
+  static const String labelSecundaryEmptyList =
+      "Pulsa sobre el boton de añadir para empezar a crear elementos asociados a la lista actual.";
 }
